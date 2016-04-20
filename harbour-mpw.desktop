@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Categories=Utility;
+Icon=harbour-mpw
+Exec=harbour-mpw
+Name=MPW
+Comment=MasterPassword client

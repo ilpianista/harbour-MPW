@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+
+[harbour-SailHN.harbour-sailhnts]
+file_filter = translations/harbour-mpw-<lang>.ts
+source_file = translations/harbour-mpw.ts
+source_lang = en
+type = QT
+
