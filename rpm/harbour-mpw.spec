@@ -28,7 +28,7 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  libmpw
-BuildRequires:  openssl
+BuildRequires:  openssl-devel
 BuildRequires:  desktop-file-utils
 
 %description
