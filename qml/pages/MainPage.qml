@@ -123,7 +123,7 @@ Page {
             site.enabled = isReady;
 
             if (!isReady) {
-                password.text = qsTr("Please fill your name and master key in the Settings page!");
+                password.text = qsTr("Please fill your name and master password in the Settings page!");
             } else {
                 password.text = "";
             }

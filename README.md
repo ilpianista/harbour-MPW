@@ -1,4 +1,4 @@
-# harbour-MPW
+# MPW
 
 A [MasterPassword](http://masterpasswordapp.com/) client for [Sailfish OS](https://sailfishos.org).
 
