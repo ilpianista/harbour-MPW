@@ -42,13 +42,13 @@ Page {
             id: name
             width: parent.width
             focus: true
-            placeholderText: qsTr("Name")
+            placeholderText: qsTr("Full name")
         }
 
         TextField {
             id: password
             width: parent.width
-            placeholderText: qsTr("Master Password")
+            placeholderText: qsTr("Master password")
             echoMode: TextInput.Password
         }
 

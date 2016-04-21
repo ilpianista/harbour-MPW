@@ -40,7 +40,7 @@
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="126"/>
-        <source>Please fill your name and master key in the Settings page!</source>
+        <source>Please fill your name and master password in the Settings page!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -88,12 +88,12 @@
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="45"/>
-        <source>Name</source>
+        <source>Full name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="51"/>
-        <source>Master Password</source>
+        <source>Master password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
