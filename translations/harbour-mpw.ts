@@ -39,7 +39,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="128"/>
+        <location filename="../qml/pages/MainPage.qml" line="126"/>
         <source>Please fill your name and master key in the Settings page!</source>
         <translation type="unfinished"></translation>
     </message>

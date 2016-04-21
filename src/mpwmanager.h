@@ -39,13 +39,12 @@ public:
     explicit MPWManager(QObject *parent = 0);
     virtual ~MPWManager();
 
-    Q_INVOKABLE QString getKey() const;
     Q_INVOKABLE QString getName() const;
     Q_INVOKABLE void setUserData(const QString &name, const QString &password);
     Q_INVOKABLE QString getPassword(const QString &site, PasswordType type, const int counter) const;
 
 private:
-    QString m_key;
+    QByteArray m_key;
     QString m_name;
 };
 

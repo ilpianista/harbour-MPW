@@ -119,7 +119,7 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Activating) {
-            var isReady = manager.getName() !== "" && manager.getKey() !== "";
+            var isReady = manager.getName() !== "";
             site.enabled = isReady;
 
             if (!isReady) {
