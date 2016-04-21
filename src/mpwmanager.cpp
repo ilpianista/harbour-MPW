@@ -40,11 +40,6 @@ MPWManager::~MPWManager()
 {
 }
 
-QString MPWManager::getKey() const
-{
-    return m_key;
-}
-
 QString MPWManager::getName() const
 {
     return m_name;
@@ -54,8 +49,14 @@ void MPWManager::setUserData(const QString &name, const QString &password)
 {
     m_name = name;
 
-    m_key = QString::fromLatin1((const char*) mpw_masterKeyForUser(name.toLatin1().data(),
-                                   password.toLatin1().data(), MPAlgorithmVersionCurrent));
+    const uint8_t* k = mpw_masterKeyForUser(name.toUtf8().data(), password.toUtf8().data(),
+                                            MPAlgorithmVersionCurrent);
+
+    if (k) {
+        m_key = QByteArray::fromRawData((const char*) k, MP_dkLen);
+    } else {
+        qCritical() << "Error during master key generation";
+    }
 }
 
 QString MPWManager::getPassword(const QString &site, PasswordType type, const int counter) const
@@ -73,7 +74,12 @@ QString MPWManager::getPassword(const QString &site, PasswordType type, const in
         default: qCritical() << "Unrecognized password type" << type;
     }
 
-    return QString::fromLatin1(mpw_passwordForSite((const unsigned char*) m_key.toLatin1().data(),
-                             site.toLatin1().data(), t, counter, MPSiteVariantPassword, NULL,
-                             MPAlgorithmVersionCurrent));
+    const char* p = mpw_passwordForSite((const unsigned char*) m_key.data(), site.toUtf8().data(),
+                                        t, counter, MPSiteVariantPassword, NULL, MPAlgorithmVersionCurrent);
+
+    if (p) {
+        return QString::fromUtf8(p);
+    } else {
+        return QString();
+    }
 }
