@@ -80,6 +80,7 @@ QString MPWManager::getPassword(const QString &site, PasswordType type, const ui
     if (p) {
         return QString::fromUtf8(p);
     } else {
+        qCritical() << "Error during password generation";
         return QString();
     }
 }
