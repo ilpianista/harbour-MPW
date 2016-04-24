@@ -59,7 +59,7 @@ void MPWManager::setUserData(const QString &name, const QString &password)
     }
 }
 
-QString MPWManager::getPassword(const QString &site, PasswordType type, const int counter) const
+QString MPWManager::getPassword(const QString &site, PasswordType type, const uint counter) const
 {
     MPSiteType t = 0;
     switch (type) {

@@ -41,7 +41,7 @@ public:
 
     Q_INVOKABLE QString getName() const;
     Q_INVOKABLE void setUserData(const QString &name, const QString &password);
-    Q_INVOKABLE QString getPassword(const QString &site, PasswordType type, const int counter) const;
+    Q_INVOKABLE QString getPassword(const QString &site, PasswordType type, const uint counter) const;
 
 private:
     QByteArray m_key;
