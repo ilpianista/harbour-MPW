@@ -43,17 +43,17 @@ Page {
             }
 
             MenuItem {
+                text: qsTr("Clear")
+
+                onClicked: clear()
+            }
+
+            MenuItem {
                 text: qsTr("Copy to clipboard")
 
                 onClicked: {
                     Clipboard.text = password.text;
                 }
-            }
-
-            MenuItem {
-                text: qsTr("Clear")
-
-                onClicked: clear()
             }
         }
 
