@@ -26,11 +26,6 @@
 
 #include <QDebug>
 
-extern "C"
-{
-#include <mpw-algorithm.h>
-}
-
 MPWManager::MPWManager(QObject *parent) :
     QObject(parent)
 {
@@ -40,28 +35,72 @@ MPWManager::~MPWManager()
 {
 }
 
+MPWManager::AlgorithmVersion MPWManager::getAlgorithmVersion() const
+{
+    return m_algVersion;
+}
+
 QString MPWManager::getName() const
 {
     return m_name;
 }
 
-void MPWManager::setUserData(const QString &name, const QString &password)
+void MPWManager::setAlgorithmVersion(AlgorithmVersion version)
+{
+    m_algVersion = version;
+}
+
+void MPWManager::setName(const QString &name)
 {
     m_name = name;
+}
 
-    const uint8_t* k = mpw_masterKeyForUser(name.toUtf8().data(), password.toUtf8().data(),
-                                            MPAlgorithmVersionCurrent);
+void MPWManager::generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version)
+{
+    setName(name);
+    setAlgorithmVersion(version);
+    qDebug() << "Using algorithm version:" << m_algVersion;
+
+    const uint8_t* k = mpw_masterKeyForUser(name.toUtf8().data(), password.toUtf8().data(), toMPAlgorithmVersion(version));
 
     if (k) {
         m_key = QByteArray::fromRawData((const char*) k, MP_dkLen);
     } else {
-        qCritical() << "Error during master key generation";
+        qCritical() << "Error during master key generation.";
     }
+}
+
+MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version) const
+{
+    MPAlgorithmVersion v = MPAlgorithmVersionCurrent;
+    switch (version) {
+        case V0: v = MPAlgorithmVersion0; break;
+        case V1: v = MPAlgorithmVersion1; break;
+        case V2: v = MPAlgorithmVersion2; break;
+        case V3: v = MPAlgorithmVersion3; break;
+        default: qCritical() << "Unrecognized algorithm version:" << version;
+    }
+
+    return v;
 }
 
 QString MPWManager::getPassword(const QString &site, PasswordType type, const uint counter) const
 {
-    MPSiteType t = 0;
+    const char* p = mpw_passwordForSite((const unsigned char*) m_key.data(), site.toUtf8().data(),
+                                        toMPSiteType(type), counter, MPSiteVariantPassword, NULL,
+                                        toMPAlgorithmVersion(m_algVersion));
+
+    if (p) {
+        return QString::fromUtf8(p);
+    } else {
+        qCritical() << "Error during password generation.";
+        return QString();
+    }
+}
+
+MPSiteType MPWManager::toMPSiteType(PasswordType type) const
+{
+    MPSiteType t = MPSiteTypeGeneratedLong;
     switch (type) {
         case Maximum: t = MPSiteTypeGeneratedMaximum; break;
         case Long: t = MPSiteTypeGeneratedLong; break;
@@ -71,16 +110,8 @@ QString MPWManager::getPassword(const QString &site, PasswordType type, const ui
         case PIN: t = MPSiteTypeGeneratedPIN; break;
         case Name: t = MPSiteTypeGeneratedName; break;
         case Phrase: t = MPSiteTypeGeneratedPhrase; break;
-        default: qCritical() << "Unrecognized password type" << type;
+        default: qCritical() << "Unrecognized password type:" << type;
     }
 
-    const char* p = mpw_passwordForSite((const unsigned char*) m_key.data(), site.toUtf8().data(),
-                                        t, counter, MPSiteVariantPassword, NULL, MPAlgorithmVersionCurrent);
-
-    if (p) {
-        return QString::fromUtf8(p);
-    } else {
-        qCritical() << "Error during password generation";
-        return QString();
-    }
+    return t;
 }

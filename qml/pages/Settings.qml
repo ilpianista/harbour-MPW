@@ -52,6 +52,19 @@ Page {
             echoMode: TextInput.Password
         }
 
+        ComboBox {
+            id: version
+            label: qsTr("Algorithm version")
+            currentIndex: 3
+
+            menu: ContextMenu {
+                MenuItem { text: qsTr("V0") }
+                MenuItem { text: qsTr("V1") }
+                MenuItem { text: qsTr("V2") }
+                MenuItem { text: qsTr("V3") }
+            }
+        }
+
         Button {
             id: save
             text: qsTr("Save");
@@ -59,7 +72,7 @@ Page {
 
             onClicked: {
                 if (name.text.length > 0 && password.text.length > 0) {
-                    manager.setUserData(name.text, password.text);
+                    manager.generateMasterKey(name.text, password.text, version.currentIndex);
                     pageStack.pop();
                 }
             }
