@@ -27,6 +27,11 @@
 
 #include <QObject>
 
+extern "C"
+{
+#include <mpw-algorithm.h>
+}
+
 class MPWManager : public QObject
 {
     Q_OBJECT
@@ -36,16 +41,29 @@ public:
     };
     Q_ENUMS(PasswordType)
 
+    enum AlgorithmVersion {
+        V0, V1, V2, V3
+    };
+    Q_ENUMS(AlgorithmVersion)
+
     explicit MPWManager(QObject *parent = 0);
     virtual ~MPWManager();
 
+    Q_INVOKABLE AlgorithmVersion getAlgorithmVersion() const;
     Q_INVOKABLE QString getName() const;
-    Q_INVOKABLE void setUserData(const QString &name, const QString &password);
+    Q_INVOKABLE void setAlgorithmVersion(AlgorithmVersion version);
+    Q_INVOKABLE void setName(const QString &name);
+
+    Q_INVOKABLE void generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version);
     Q_INVOKABLE QString getPassword(const QString &site, PasswordType type, const uint counter) const;
 
 private:
+    MPAlgorithmVersion toMPAlgorithmVersion(AlgorithmVersion version) const;
+    MPSiteType toMPSiteType(PasswordType type) const;
+
     QByteArray m_key;
     QString m_name;
+    AlgorithmVersion m_algVersion;
 };
 
 #endif // MPWMANAGER_H
