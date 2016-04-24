@@ -49,7 +49,9 @@ Page {
             }
 
             MenuItem {
+                id: copy
                 text: qsTr("Copy to clipboard")
+                enabled: false
 
                 onClicked: {
                     Clipboard.text = password.text;
@@ -132,6 +134,7 @@ Page {
 
     function getPassword() {
         password.text = manager.getPassword(site.text, type.currentIndex, counter.text);
+        copy.enabled = true;
     }
 
     function clear() {
@@ -140,5 +143,6 @@ Page {
         counter.text = "1"
         type.currentIndex = 1;
         password.text = "";
+        copy.enabled = false;
     }
 }
