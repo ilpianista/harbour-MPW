@@ -26,3 +26,7 @@ CONFIG += sailfishapp_i18n
 INCLUDEPATH += "/usr/include/mpw"
 
 LIBS += -lmpw -lcrypto
+
+TRANSLATIONS += \
+    translations/harbour-mpw-it.ts \
+    translations/harbour-mpw-sv.ts
