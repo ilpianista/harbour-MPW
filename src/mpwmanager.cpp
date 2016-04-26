@@ -25,14 +25,18 @@
 #include "mpwmanager.h"
 
 #include <QDebug>
+#include <QThread>
+
+#include "asyncmasterkey.h"
 
 MPWManager::MPWManager(QObject *parent) :
-    QObject(parent)
+    m_key(0), QObject(parent)
 {
 }
 
 MPWManager::~MPWManager()
 {
+    delete m_key;
 }
 
 MPWManager::AlgorithmVersion MPWManager::getAlgorithmVersion() const
@@ -47,6 +51,8 @@ QString MPWManager::getName() const
 
 void MPWManager::setAlgorithmVersion(AlgorithmVersion version)
 {
+    qDebug() << "Using algorithm version:" << version;
+
     m_algVersion = version;
 }
 
@@ -59,18 +65,41 @@ void MPWManager::generateMasterKey(const QString &name, const QString &password,
 {
     setName(name);
     setAlgorithmVersion(version);
-    qDebug() << "Using algorithm version:" << m_algVersion;
 
-    const uint8_t* k = mpw_masterKeyForUser(name.toUtf8().data(), password.toUtf8().data(), toMPAlgorithmVersion(version));
+    QThread* thread = new QThread;
+    AsyncMasterKey* worker = new AsyncMasterKey(name, password, version);
+    worker->moveToThread(thread);
+    connect(thread, &QThread::started, worker, &AsyncMasterKey::generate);
+    connect(worker, &AsyncMasterKey::finished, this, &MPWManager::gotMasterKey);
+    connect(worker, &AsyncMasterKey::finished, thread, &QThread::quit);
+    connect(worker, &AsyncMasterKey::finished, worker, &AsyncMasterKey::deleteLater);
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+    thread->start();
+}
 
-    if (k) {
-        m_key = QByteArray::fromRawData((const char*) k, MP_dkLen);
+void MPWManager::gotMasterKey(QByteArray *key)
+{
+    qDebug() << "Storing master key.";
+    m_key = key;
+
+    Q_EMIT generatedMasterKey();
+}
+
+QString MPWManager::getPassword(const QString &site, PasswordType type, const uint counter) const
+{
+    const char* p = mpw_passwordForSite((const unsigned char*) m_key->data(), site.toUtf8().data(),
+                                        toMPSiteType(type), counter, MPSiteVariantPassword, NULL,
+                                        toMPAlgorithmVersion(m_algVersion));
+
+    if (p) {
+        return QString::fromUtf8(p);
     } else {
-        qCritical() << "Error during master key generation.";
+        qCritical() << "Error during password generation.";
+        return QString();
     }
 }
 
-MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version) const
+MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version)
 {
     MPAlgorithmVersion v = MPAlgorithmVersionCurrent;
     switch (version) {
@@ -84,21 +113,7 @@ MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version) co
     return v;
 }
 
-QString MPWManager::getPassword(const QString &site, PasswordType type, const uint counter) const
-{
-    const char* p = mpw_passwordForSite((const unsigned char*) m_key.data(), site.toUtf8().data(),
-                                        toMPSiteType(type), counter, MPSiteVariantPassword, NULL,
-                                        toMPAlgorithmVersion(m_algVersion));
-
-    if (p) {
-        return QString::fromUtf8(p);
-    } else {
-        qCritical() << "Error during password generation.";
-        return QString();
-    }
-}
-
-MPSiteType MPWManager::toMPSiteType(PasswordType type) const
+MPSiteType MPWManager::toMPSiteType(PasswordType type)
 {
     MPSiteType t = MPSiteTypeGeneratedLong;
     switch (type) {

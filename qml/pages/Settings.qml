@@ -26,8 +26,17 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
-
     allowedOrientations: Orientation.All
+
+    Connections {
+        target: manager
+
+        onGeneratedMasterKey: {
+            busy.visible = busy.running = false;
+            name.enabled = password.enabled = version.enabled = true;
+            pageStack.pop();
+        }
+    }
 
     Column {
         id: column
@@ -65,6 +74,12 @@ Page {
             }
         }
 
+        BusyIndicator {
+            id: busy
+            visible: false
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
         Button {
             id: save
             text: qsTr("Save");
@@ -72,8 +87,9 @@ Page {
 
             onClicked: {
                 if (name.text.length > 0 && password.text.length > 0) {
+                    name.enabled = password.enabled = version.enabled = false;
+                    busy.visible = busy.running = true;
                     manager.generateMasterKey(name.text, password.text, version.currentIndex);
-                    pageStack.pop();
                 }
             }
         }
