@@ -4,10 +4,12 @@ CONFIG += sailfishapp
 
 SOURCES += \
     src/main.cpp \
-    src/mpwmanager.cpp
+    src/mpwmanager.cpp \
+    src/asyncmasterkey.cpp
 
 HEADERS += \
-    src/mpwmanager.h
+    src/mpwmanager.h \
+    src/asyncmasterkey.h
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \

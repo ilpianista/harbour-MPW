@@ -22,10 +22,9 @@
   SOFTWARE.
 */
 
-#ifndef MPWMANAGER_H
-#define MPWMANAGER_H
+#include "asyncmasterkey.h"
 
-#include <QObject>
+#include <QDebug>
 
 extern "C"
 {
@@ -35,44 +34,27 @@ extern "C"
 #endif
 }
 
-class MPWManager : public QObject
+AsyncMasterKey::AsyncMasterKey(const QString &name, const QString &password,
+                               MPWManager::AlgorithmVersion version)
+    : m_name(name), m_password(password), m_algVersion(version)
 {
-    Q_OBJECT
-public:
-    enum PasswordType {
-        Maximum, Long, Medium, Basic, Short, PIN, Name, Phrase
-    };
-    Q_ENUMS(PasswordType)
+}
 
-    enum AlgorithmVersion {
-        V0, V1, V2, V3
-    };
-    Q_ENUMS(AlgorithmVersion)
+AsyncMasterKey::~AsyncMasterKey()
+{
+}
 
-    explicit MPWManager(QObject *parent = 0);
-    virtual ~MPWManager();
+void AsyncMasterKey::generate()
+{
+    const uint8_t* k = mpw_masterKeyForUser(m_name.toUtf8().data(), m_password.toUtf8().data(),
+                                            MPWManager::toMPAlgorithmVersion(m_algVersion));
 
-    Q_INVOKABLE AlgorithmVersion getAlgorithmVersion() const;
-    Q_INVOKABLE QString getName() const;
-    Q_INVOKABLE void setAlgorithmVersion(AlgorithmVersion version);
-    Q_INVOKABLE void setName(const QString &name);
+    QByteArray* key = 0;
+    if (k) {
+        key = new QByteArray((const char*) k, MP_dkLen);
+    } else {
+        qCritical() << "Error during master key generation.";
+    }
 
-    Q_INVOKABLE void generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version);
-    Q_INVOKABLE QString getPassword(const QString &site, PasswordType type, const uint counter) const;
-
-    static MPAlgorithmVersion toMPAlgorithmVersion(AlgorithmVersion version);
-    static MPSiteType toMPSiteType(PasswordType type);
-
-Q_SIGNALS:
-    void generatedMasterKey();
-
-protected Q_SLOTS:
-    void gotMasterKey(QByteArray *key);
-
-private:
-    QString m_name;
-    AlgorithmVersion m_algVersion;
-    QByteArray *m_key;
-};
-
-#endif // MPWMANAGER_H
+    Q_EMIT finished(key);
+}

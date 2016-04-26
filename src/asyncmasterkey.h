@@ -22,57 +22,31 @@
   SOFTWARE.
 */
 
-#ifndef MPWMANAGER_H
-#define MPWMANAGER_H
+#ifndef ASYNCMASTERKEY_H
+#define ASYNCMASTERKEY_H
 
 #include <QObject>
 
-extern "C"
-{
-#ifndef MPWALGORITHM_H
-#define MPWALGORITHM_H
-#include <mpw-algorithm.h>
-#endif
-}
+#include "mpwmanager.h"
 
-class MPWManager : public QObject
+class AsyncMasterKey : public QObject
 {
     Q_OBJECT
 public:
-    enum PasswordType {
-        Maximum, Long, Medium, Basic, Short, PIN, Name, Phrase
-    };
-    Q_ENUMS(PasswordType)
-
-    enum AlgorithmVersion {
-        V0, V1, V2, V3
-    };
-    Q_ENUMS(AlgorithmVersion)
-
-    explicit MPWManager(QObject *parent = 0);
-    virtual ~MPWManager();
-
-    Q_INVOKABLE AlgorithmVersion getAlgorithmVersion() const;
-    Q_INVOKABLE QString getName() const;
-    Q_INVOKABLE void setAlgorithmVersion(AlgorithmVersion version);
-    Q_INVOKABLE void setName(const QString &name);
-
-    Q_INVOKABLE void generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version);
-    Q_INVOKABLE QString getPassword(const QString &site, PasswordType type, const uint counter) const;
-
-    static MPAlgorithmVersion toMPAlgorithmVersion(AlgorithmVersion version);
-    static MPSiteType toMPSiteType(PasswordType type);
+    explicit AsyncMasterKey(const QString &name, const QString &password,
+                            MPWManager::AlgorithmVersion version);
+    virtual ~AsyncMasterKey();
 
 Q_SIGNALS:
-    void generatedMasterKey();
+    void finished(QByteArray *key);
 
-protected Q_SLOTS:
-    void gotMasterKey(QByteArray *key);
+public Q_SLOTS:
+    void generate();
 
 private:
     QString m_name;
-    AlgorithmVersion m_algVersion;
-    QByteArray *m_key;
+    QString m_password;
+    MPWManager::AlgorithmVersion m_algVersion;
 };
 
-#endif // MPWMANAGER_H
+#endif // ASYNCMASTERKEY_H

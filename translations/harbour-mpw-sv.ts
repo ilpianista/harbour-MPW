@@ -82,47 +82,47 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="38"/>
+        <location filename="../qml/pages/Settings.qml" line="47"/>
         <source>Settings</source>
         <translation>Inställningar</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="45"/>
+        <location filename="../qml/pages/Settings.qml" line="54"/>
         <source>Full name</source>
         <translation>Fullständigt namn</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="51"/>
+        <location filename="../qml/pages/Settings.qml" line="60"/>
         <source>Master password</source>
         <translation>Huvudlösenord</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="57"/>
+        <location filename="../qml/pages/Settings.qml" line="66"/>
         <source>Algorithm version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="61"/>
+        <location filename="../qml/pages/Settings.qml" line="71"/>
         <source>V0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="62"/>
+        <location filename="../qml/pages/Settings.qml" line="72"/>
         <source>V1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="63"/>
+        <location filename="../qml/pages/Settings.qml" line="73"/>
         <source>V2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="64"/>
+        <location filename="../qml/pages/Settings.qml" line="74"/>
         <source>V3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="70"/>
+        <location filename="../qml/pages/Settings.qml" line="86"/>
         <source>Save</source>
         <translation>Spara</translation>
     </message>
