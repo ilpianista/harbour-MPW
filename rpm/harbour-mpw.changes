@@ -1,2 +1,12 @@
+* Thu Apr 21 2016 Andrea Scarpino <me@andreascarpino.it> 0.1.2-1
+- Don't block UI when saving master key
+- Support all algorithm versions
+- Enable copy to clipboard button only when there's something to copy
+- Add Italian translation
+- Add Swedish translation
+
+* Thu Apr 21 2016 Andrea Scarpino <me@andreascarpino.it> 0.1.1-1
+- Fix master key generation (#1)
+
 * Thu Apr 21 2016 Andrea Scarpino <me@andreascarpino.it> 0.1-1
 - Initial version
