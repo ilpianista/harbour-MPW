@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
     QScopedPointer<QQuickView> view(SailfishApp::createView());
 
     QCoreApplication::setApplicationName(QStringLiteral("MPW"));
+    QCoreApplication::setOrganizationDomain(QStringLiteral("it.andreascarpino"));
 
     qmlRegisterType<MPWManager>("harbour.mpw", 1, 0, "MPWManager");
 
