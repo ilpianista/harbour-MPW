@@ -22,30 +22,31 @@
   SOFTWARE.
 */
 
-#include <QtQuick>
-
-#include <sailfishapp.h>
+#ifndef DBMANAGER_H
+#define DBMANAGER_H
 
 #include "mpwmanager.h"
 #include "sitessqlmodel.h"
 
-int main(int argc, char *argv[])
+class QSqlDatabase;
+
+class DBManager : public QObject
 {
-    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
-    QScopedPointer<QQuickView> view(SailfishApp::createView());
+    Q_OBJECT
+public:
+    explicit DBManager(QObject *parent = 0);
+    virtual ~DBManager();
 
-    QCoreApplication::setApplicationName(QStringLiteral("harbour-mpw"));
-    QCoreApplication::setOrganizationDomain(QStringLiteral("andreascarpino.it"));
+    void clearSites();
+    void deleteSite(const QString &site);
+    void insert(const QString &site, MPWManager::PasswordType type, const uint counter);
 
-    qmlRegisterType<MPWManager>("harbour.mpw", 1, 0, "MPWManager");
+private:
+    void init();
+    int readDBVersion() const;
+    QString typeToString(MPWManager::PasswordType type) const;
 
-    MPWManager manager;
-    view->rootContext()->setContextProperty("manager", &manager);
-    SitesSqlModel* recentSites = manager.recentSites();
-    view->rootContext()->setContextProperty("recentSites", recentSites);
+    QSqlDatabase db;
+};
 
-    view->setSource(SailfishApp::pathTo("qml/MPW.qml"));
-    view->show();
-
-    return app->exec();
-}
+#endif // DBMANAGER_H
