@@ -53,14 +53,12 @@ Page {
             id: name
             width: parent.width
             text: manager.getName
-            focus: text.length === 0
             placeholderText: qsTr("Full name")
         }
 
         TextField {
             id: password
             width: parent.width
-            focus: name.text.length > 0 && text.length === 0
             placeholderText: qsTr("Master password")
             echoMode: TextInput.Password
         }
@@ -102,5 +100,10 @@ Page {
 
     Component.onCompleted: {
         name.text = manager.getName();
+
+        if (name.text.length > 0) {
+            password.forceActiveFocus();
+        }
+
     }
 }
