@@ -2,19 +2,26 @@ TARGET = harbour-mpw
 
 CONFIG += sailfishapp
 
+QT += sql
+
 SOURCES += \
     src/main.cpp \
+    src/asyncmasterkey.cpp \
+    src/dbmanager.cpp \
     src/mpwmanager.cpp \
-    src/asyncmasterkey.cpp
+    src/sitessqlmodel.cpp
 
 HEADERS += \
+    src/asyncmasterkey.h \
+    src/dbmanager.h \
     src/mpwmanager.h \
-    src/asyncmasterkey.h
+    src/sitessqlmodel.h
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
     qml/pages/MainPage.qml \
     qml/pages/Settings.qml \
+    qml/pages/SiteDelegate.qml \
     qml/MPW.qml \
     harbour-mpw.desktop \
     harbour-mpw.png \

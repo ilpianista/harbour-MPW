@@ -28,13 +28,16 @@ import harbour.mpw 1.0
 
 Page {
 
+    property bool masterKey: false
+
     allowedOrientations: Orientation.All
 
     Connections {
         target: manager
 
         onGeneratedMasterKey: {
-            site.enabled = true;
+            masterKey = true;
+            siteUrl.enabled = true;
             password.text = "";
         }
     }
@@ -52,9 +55,30 @@ Page {
             }
 
             MenuItem {
-                text: qsTr("Clear")
+                id: clearSites
+                text: qsTr("Clear sites")
+                enabled: sites.count > 0
 
-                onClicked: clear()
+                onClicked: {
+                    if (masterKey) {
+                        password.text = "";
+                    }
+                    enabled = false;
+
+                    manager.clearSites();
+                }
+            }
+
+            MenuItem {
+                id: clearPwd
+                text: qsTr("Clear password")
+                enabled: false
+
+                onClicked: {
+                    enabled = false;
+                    copy.enabled = false;
+                    password.text = "";
+                }
             }
 
             MenuItem {
@@ -78,31 +102,31 @@ Page {
             }
 
             TextField {
-                id: site
+                id: siteUrl
                 width: parent.width
                 inputMethodHints: Qt.ImhUrlCharactersOnly
                 placeholderText: qsTr("Site name (e.g. google.com)")
                 enabled: false
 
-                EnterKey.enabled: site.text.length > 0 && counter.text.length > 0
+                EnterKey.enabled: siteUrl.text.length > 0 && siteCounter.text.length > 0
                 EnterKey.onClicked: getPassword()
             }
 
             TextField {
-                id: counter
+                id: siteCounter
                 width: parent.width
                 text: "1"
                 inputMethodHints: Qt.ImhDigitsOnly
                 validator: RegExpValidator { regExp: /^[0-9]+$/ }
                 placeholderText: qsTr("Counter")
 
-                EnterKey.enabled: site.text.length > 0 && counter.text.length > 0
+                EnterKey.enabled: siteUrl.text.length > 0 && siteCounter.text.length > 0
                 EnterKey.onClicked: getPassword()
 
             }
 
             ComboBox {
-                id: type
+                id: sitePwdType
                 label: qsTr("Password type")
                 currentIndex: 1
 
@@ -126,22 +150,25 @@ Page {
                 wrapMode: Text.Wrap
                 text: qsTr("Please fill your name and master password in the Settings page!")
             }
+
+            SectionHeader {
+               text: qsTr("Sites")
+            }
+
+            Repeater {
+                id: sites
+                model: recentSites
+                delegate: SiteDelegate {}
+            }
         }
 
         VerticalScrollDecorator {}
     }
 
     function getPassword() {
-        password.text = manager.getPassword(site.text, type.currentIndex, counter.text);
+        password.text = manager.getPassword(siteUrl.text, sitePwdType.currentIndex, siteCounter.text);
+        clearPwd.enabled = true;
         copy.enabled = true;
     }
 
-    function clear() {
-        site.text = "";
-        site.forceActiveFocus();
-        counter.text = "1"
-        type.currentIndex = 1;
-        password.text = "";
-        copy.enabled = false;
-    }
 }

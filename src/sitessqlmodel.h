@@ -22,30 +22,25 @@
   SOFTWARE.
 */
 
-#include <QtQuick>
+#ifndef SITESSQLMODEL_H
+#define SITESSQLMODEL_H
 
-#include <sailfishapp.h>
+#include <QSqlQueryModel>
 
-#include "mpwmanager.h"
-#include "sitessqlmodel.h"
-
-int main(int argc, char *argv[])
+class SitesSqlModel : public QSqlQueryModel
 {
-    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
-    QScopedPointer<QQuickView> view(SailfishApp::createView());
+    Q_OBJECT
+public:
+    explicit SitesSqlModel(QObject *parent = 0);
 
-    QCoreApplication::setApplicationName(QStringLiteral("harbour-mpw"));
-    QCoreApplication::setOrganizationDomain(QStringLiteral("andreascarpino.it"));
+    void refresh();
 
-    qmlRegisterType<MPWManager>("harbour.mpw", 1, 0, "MPWManager");
+    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    virtual QHash<int,QByteArray> roleNames() const;
 
-    MPWManager manager;
-    view->rootContext()->setContextProperty("manager", &manager);
-    SitesSqlModel* recentSites = manager.recentSites();
-    view->rootContext()->setContextProperty("recentSites", recentSites);
+private:
+    QHash<int, QByteArray> m_roleNames;
 
-    view->setSource(SailfishApp::pathTo("qml/MPW.qml"));
-    view->show();
+};
 
-    return app->exec();
-}
+#endif // SITESSQLMODEL_H

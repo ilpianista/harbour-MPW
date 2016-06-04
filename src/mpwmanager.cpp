@@ -30,9 +30,12 @@
 #include <QThread>
 
 #include "asyncmasterkey.h"
+#include "dbmanager.h"
 
 MPWManager::MPWManager(QObject *parent) :
     QObject(parent)
+  , m_db(new DBManager(this))
+  , m_model(new SitesSqlModel(this))
   , m_key(0)
 {
     m_settings = new QSettings(QCoreApplication::applicationName(), QCoreApplication::applicationName(), this);
@@ -43,6 +46,8 @@ MPWManager::MPWManager(QObject *parent) :
 
 MPWManager::~MPWManager()
 {
+    delete m_db;
+    delete m_model;
     delete m_key;
     delete m_settings;
 }
@@ -102,6 +107,8 @@ QString MPWManager::getPassword(const QString &site, PasswordType type, const ui
                                         toMPAlgorithmVersion(m_algVersion));
 
     if (p) {
+        m_db->insert(site, type, counter);
+        m_model->refresh();
         return QString::fromUtf8(p);
     } else {
         qCritical() << "Error during password generation";
@@ -139,6 +146,25 @@ MPSiteType MPWManager::toMPSiteType(PasswordType type)
     }
 
     return t;
+}
+
+void MPWManager::clearSites()
+{
+    m_db->clearSites();
+    m_model->refresh();
+}
+
+void MPWManager::deleteSite(const QString &site)
+{
+    m_db->deleteSite(site);
+    m_model->refresh();
+}
+
+SitesSqlModel *MPWManager::recentSites()
+{
+    //m_model = new SitesSqlModel(this);
+
+    return m_model;
 }
 
 MPWManager::AlgorithmVersion MPWManager::algVersionFromInt(const uint &version)

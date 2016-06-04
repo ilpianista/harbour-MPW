@@ -35,7 +35,10 @@ extern "C"
 #endif
 }
 
+#include "sitessqlmodel.h"
+
 class QSettings;
+class DBManager;
 
 class MPWManager : public QObject
 {
@@ -62,6 +65,10 @@ public:
     Q_INVOKABLE void generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version);
     Q_INVOKABLE QString getPassword(const QString &site, PasswordType type, const uint counter) const;
 
+    Q_INVOKABLE void clearSites();
+    Q_INVOKABLE void deleteSite(const QString &site);
+    SitesSqlModel* recentSites();
+
     static MPAlgorithmVersion toMPAlgorithmVersion(AlgorithmVersion version);
     static MPSiteType toMPSiteType(PasswordType type);
 
@@ -74,6 +81,8 @@ protected Q_SLOTS:
 private:
     AlgorithmVersion algVersionFromInt(const uint &version);
 
+    DBManager *m_db;
+    SitesSqlModel* m_model;
     QString m_name;
     AlgorithmVersion m_algVersion;
     QByteArray *m_key;
