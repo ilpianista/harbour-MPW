@@ -26,6 +26,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
+    id: page
+
     allowedOrientations: Orientation.All
 
     Connections {
@@ -39,9 +41,9 @@ Page {
     }
 
     Column {
-        id: column
         x: Theme.horizontalPageMargin
         width: parent.width - Theme.horizontalPageMargin * 2
+        spacing: Theme.paddingMedium
 
         PageHeader {
             title: qsTr("Settings")
@@ -50,13 +52,15 @@ Page {
         TextField {
             id: name
             width: parent.width
-            focus: true
+            text: manager.getName
+            focus: text.length === 0
             placeholderText: qsTr("Full name")
         }
 
         TextField {
             id: password
             width: parent.width
+            focus: name.text.length > 0 && text.length === 0
             placeholderText: qsTr("Master password")
             echoMode: TextInput.Password
         }
@@ -64,7 +68,8 @@ Page {
         ComboBox {
             id: version
             label: qsTr("Algorithm version")
-            currentIndex: 3
+            currentIndex: manager.getAlgorithmVersion()
+            width: page.width
 
             menu: ContextMenu {
                 MenuItem { text: qsTr("V0") }

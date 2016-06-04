@@ -30,6 +30,15 @@ Page {
 
     allowedOrientations: Orientation.All
 
+    Connections {
+        target: manager
+
+        onGeneratedMasterKey: {
+            site.enabled = true;
+            password.text = "";
+        }
+    }
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
@@ -73,6 +82,7 @@ Page {
                 width: parent.width
                 inputMethodHints: Qt.ImhUrlCharactersOnly
                 placeholderText: qsTr("Site name (e.g. google.com)")
+                enabled: false
 
                 EnterKey.enabled: site.text.length > 0 && counter.text.length > 0
                 EnterKey.onClicked: getPassword()
@@ -83,6 +93,7 @@ Page {
                 width: parent.width
                 text: "1"
                 inputMethodHints: Qt.ImhDigitsOnly
+                validator: RegExpValidator { regExp: /^[0-9]+$/ }
                 placeholderText: qsTr("Counter")
 
                 EnterKey.enabled: site.text.length > 0 && counter.text.length > 0
@@ -113,23 +124,11 @@ Page {
                 color: Theme.secondaryColor
                 horizontalAlignment: TextInput.AlignHCenter
                 wrapMode: Text.Wrap
+                text: qsTr("Please fill your name and master password in the Settings page!")
             }
         }
 
         VerticalScrollDecorator {}
-    }
-
-    onStatusChanged: {
-        if (status === PageStatus.Activating) {
-            var isReady = manager.getName() !== "";
-            site.enabled = isReady;
-
-            if (!isReady) {
-                password.text = qsTr("Please fill your name and master password in the Settings page!");
-            } else {
-                password.text = "";
-            }
-        }
     }
 
     function getPassword() {

@@ -35,6 +35,8 @@ extern "C"
 #endif
 }
 
+class QSettings;
+
 class MPWManager : public QObject
 {
     Q_OBJECT
@@ -70,9 +72,12 @@ protected Q_SLOTS:
     void gotMasterKey(QByteArray *key);
 
 private:
+    AlgorithmVersion algVersionFromInt(const uint &version);
+
     QString m_name;
     AlgorithmVersion m_algVersion;
     QByteArray *m_key;
+    QSettings *m_settings;
 };
 
 #endif // MPWMANAGER_H
