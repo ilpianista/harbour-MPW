@@ -24,19 +24,27 @@
 
 #include "mpwmanager.h"
 
+#include <QCoreApplication>
 #include <QDebug>
+#include <QSettings>
 #include <QThread>
 
 #include "asyncmasterkey.h"
 
 MPWManager::MPWManager(QObject *parent) :
-    m_key(0), QObject(parent)
+    QObject(parent)
+  , m_key(0)
 {
+    m_settings = new QSettings(QCoreApplication::applicationName(), QCoreApplication::applicationName(), this);
+
+    m_name = m_settings->value("Name").toString();
+    m_algVersion = algVersionFromInt(m_settings->value("Algorithm").toUInt());
 }
 
 MPWManager::~MPWManager()
 {
     delete m_key;
+    delete m_settings;
 }
 
 MPWManager::AlgorithmVersion MPWManager::getAlgorithmVersion() const
@@ -54,11 +62,13 @@ void MPWManager::setAlgorithmVersion(AlgorithmVersion version)
     qDebug() << "Using algorithm version:" << version;
 
     m_algVersion = version;
+    m_settings->setValue("Algorithm", version);
 }
 
 void MPWManager::setName(const QString &name)
 {
     m_name = name;
+    m_settings->setValue("Name", name);
 }
 
 void MPWManager::generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version)
@@ -79,7 +89,7 @@ void MPWManager::generateMasterKey(const QString &name, const QString &password,
 
 void MPWManager::gotMasterKey(QByteArray *key)
 {
-    qDebug() << "Storing master key.";
+    qDebug() << "Storing master key";
     m_key = key;
 
     Q_EMIT generatedMasterKey();
@@ -94,7 +104,7 @@ QString MPWManager::getPassword(const QString &site, PasswordType type, const ui
     if (p) {
         return QString::fromUtf8(p);
     } else {
-        qCritical() << "Error during password generation.";
+        qCritical() << "Error during password generation";
         return QString();
     }
 }
@@ -129,4 +139,17 @@ MPSiteType MPWManager::toMPSiteType(PasswordType type)
     }
 
     return t;
+}
+
+MPWManager::AlgorithmVersion MPWManager::algVersionFromInt(const uint &version)
+{
+    if (version == 0) {
+        return V0;
+    } else if (version == 1) {
+        return V1;
+    } else if (version == 2) {
+        return V2;
+    } else {
+        return V3;
+    }
 }
