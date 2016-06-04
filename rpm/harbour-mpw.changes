@@ -1,3 +1,6 @@
+* Sat Jun 04 2016 Andrea Scarpino <me@andreascarpino.it> 0.1.3-1
+- Store name and algorithm version
+
 * Thu Apr 21 2016 Andrea Scarpino <me@andreascarpino.it> 0.1.2-1
 - Don't block UI when saving master key
 - Support all algorithm versions
