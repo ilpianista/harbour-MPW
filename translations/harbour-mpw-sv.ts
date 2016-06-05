@@ -140,12 +140,12 @@
 <context>
     <name>SiteDelegate</name>
     <message>
-        <location filename="../qml/pages/SiteDelegate.qml" line="52"/>
+        <location filename="../qml/pages/SiteDelegate.qml" line="43"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SiteDelegate.qml" line="88"/>
+        <location filename="../qml/pages/SiteDelegate.qml" line="79"/>
         <source>Deleting</source>
         <translation type="unfinished"></translation>
     </message>

@@ -29,20 +29,11 @@ ListItem {
     id: item
     menu: itemMenu
 
-    Column {
-        Label {
-            x: Theme.horizontalPageMargin
-            font.pixelSize: Theme.fontSizeMedium
-            text: site
-            wrapMode: Text.Wrap
-        }
-
-        Label {
-            width: item.width - Theme.horizontalPageMargin
-            font.pixelSize: Theme.fontSizeSmall
-            text: type
-            horizontalAlignment: Text.AlignRight
-        }
+    Label {
+        x: Theme.horizontalPageMargin
+        font.pixelSize: Theme.fontSizeMedium
+        text: site
+        wrapMode: Text.Wrap
     }
 
     ContextMenu {
