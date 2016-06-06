@@ -112,33 +112,39 @@ Page {
                 EnterKey.onClicked: getPassword()
             }
 
-            TextField {
-                id: siteCounter
+            Row {
                 width: parent.width
-                text: "1"
-                inputMethodHints: Qt.ImhDigitsOnly
-                validator: RegExpValidator { regExp: /^[0-9]+$/ }
-                placeholderText: qsTr("Counter")
+                spacing: Theme.paddingMedium
 
-                EnterKey.enabled: siteUrl.text.length > 0 && siteCounter.text.length > 0
-                EnterKey.onClicked: getPassword()
+                ComboBox {
+                    id: sitePwdType
+                    label: qsTr("Type")
+                    currentIndex: 1
+                    width: parent.width - siteCounter.width
 
-            }
+                    menu: ContextMenu {
+                        MenuItem { text: qsTr("Maximum") }
+                        MenuItem { text: qsTr("Long") }
+                        MenuItem { text: qsTr("Medium") }
+                        MenuItem { text: qsTr("Basic") }
+                        MenuItem { text: qsTr("Short") }
+                        MenuItem { text: qsTr("PIN") }
+                        MenuItem { text: qsTr("Name") }
+                        MenuItem { text: qsTr("Phrase") }
+                    }
+                }
 
-            ComboBox {
-                id: sitePwdType
-                label: qsTr("Password type")
-                currentIndex: 1
+                TextField {
+                    id: siteCounter
+                    text: "1"
+                    width: 200
+                    inputMethodHints: Qt.ImhDigitsOnly
+                    validator: RegExpValidator { regExp: /^[0-9]+$/ }
+                    placeholderText: qsTr("Counter")
 
-                menu: ContextMenu {
-                    MenuItem { text: qsTr("Maximum") }
-                    MenuItem { text: qsTr("Long") }
-                    MenuItem { text: qsTr("Medium") }
-                    MenuItem { text: qsTr("Basic") }
-                    MenuItem { text: qsTr("Short") }
-                    MenuItem { text: qsTr("PIN") }
-                    MenuItem { text: qsTr("Name") }
-                    MenuItem { text: qsTr("Phrase") }
+                    EnterKey.enabled: siteUrl.text.length > 0 && siteCounter.text.length > 0
+                    EnterKey.onClicked: getPassword()
+
                 }
             }
 
@@ -166,9 +172,11 @@ Page {
     }
 
     function getPassword() {
-        password.text = manager.getPassword(siteUrl.text, sitePwdType.currentIndex, siteCounter.text);
+        var pwd = manager.getPassword(siteUrl.text, sitePwdType.currentIndex, siteCounter.text);
+        password.text = pwd;
         clearPwd.enabled = true;
         copy.enabled = true;
+        appWindow.password = pwd;
     }
 
 }

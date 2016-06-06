@@ -51,7 +51,7 @@ ListItem {
         siteCounter.text = counter;
 
         if (masterKey) {
-            password.text = "";
+            getPassword();
         }
     }
 

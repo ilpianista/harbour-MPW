@@ -19,52 +19,47 @@
         <translation>Sito web (google.com, ...)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="121"/>
+        <location filename="../qml/pages/MainPage.qml" line="143"/>
         <source>Counter</source>
         <translation>Contatore</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="130"/>
-        <source>Password type</source>
-        <translation>Tipologia password</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="139"/>
+        <location filename="../qml/pages/MainPage.qml" line="131"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="151"/>
+        <location filename="../qml/pages/MainPage.qml" line="157"/>
         <source>Please fill your name and master password in the Settings page!</source>
         <translation>Perfavore immetti il tuo nome e password nella pagina Impostazioni!</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="155"/>
+        <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Sites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="138"/>
+        <location filename="../qml/pages/MainPage.qml" line="130"/>
         <source>Short</source>
         <translation>Corta</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="137"/>
+        <location filename="../qml/pages/MainPage.qml" line="129"/>
         <source>Basic</source>
         <translation>Semplice</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="136"/>
+        <location filename="../qml/pages/MainPage.qml" line="128"/>
         <source>Medium</source>
         <translation>Media</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="135"/>
+        <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Long</source>
         <translation>Lunga</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="134"/>
+        <location filename="../qml/pages/MainPage.qml" line="126"/>
         <source>Maximum</source>
         <translation>Massima</translation>
     </message>
@@ -79,12 +74,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="140"/>
+        <location filename="../qml/pages/MainPage.qml" line="121"/>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="132"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="141"/>
+        <location filename="../qml/pages/MainPage.qml" line="133"/>
         <source>Phrase</source>
         <translation>Frase</translation>
     </message>
@@ -102,39 +102,39 @@
         <translation>Nome completo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="62"/>
+        <location filename="../qml/pages/Settings.qml" line="68"/>
         <source>Master password</source>
         <translation>Master password</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="68"/>
+        <location filename="../qml/pages/Settings.qml" line="80"/>
         <source>Algorithm version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="73"/>
+        <location filename="../qml/pages/Settings.qml" line="85"/>
         <source>V0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="74"/>
+        <location filename="../qml/pages/Settings.qml" line="86"/>
         <source>V1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="75"/>
+        <location filename="../qml/pages/Settings.qml" line="87"/>
         <source>V2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="76"/>
+        <location filename="../qml/pages/Settings.qml" line="88"/>
         <source>V3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="88"/>
-        <source>Save</source>
-        <translation>Salva</translation>
+        <location filename="../qml/pages/Settings.qml" line="100"/>
+        <source>Generate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
