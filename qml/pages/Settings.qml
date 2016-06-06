@@ -54,6 +54,12 @@ Page {
             width: parent.width
             text: manager.getName
             placeholderText: qsTr("Full name")
+
+            onTextChanged: {
+                if (text.length > 0 && password.text.length > 0) {
+                    save.enabled = true;
+                }
+            }
         }
 
         TextField {
@@ -61,6 +67,12 @@ Page {
             width: parent.width
             placeholderText: qsTr("Master password")
             echoMode: TextInput.Password
+
+            onTextChanged: {
+                if (text.length > 0 && name.text.length > 0) {
+                    save.enabled = true;
+                }
+            }
         }
 
         ComboBox {
@@ -85,15 +97,14 @@ Page {
 
         Button {
             id: save
-            text: qsTr("Save");
+            text: qsTr("Generate");
             anchors.horizontalCenter: parent.horizontalCenter
+            enabled: false
 
             onClicked: {
-                if (name.text.length > 0 && password.text.length > 0) {
-                    name.enabled = password.enabled = version.enabled = false;
-                    busy.visible = busy.running = true;
-                    manager.generateMasterKey(name.text, password.text, version.currentIndex);
-                }
+                enabled = name.enabled = password.enabled = version.enabled = false;
+                busy.visible = busy.running = true;
+                manager.generateMasterKey(name.text, password.text, version.currentIndex);
             }
         }
     }
