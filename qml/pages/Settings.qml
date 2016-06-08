@@ -55,11 +55,7 @@ Page {
             text: manager.getName
             placeholderText: qsTr("Full name")
 
-            onTextChanged: {
-                if (text.length > 0 && password.text.length > 0) {
-                    save.enabled = true;
-                }
-            }
+            onTextChanged: save.enabled = (text.length > 0 && password.text.length > 0)
         }
 
         TextField {
@@ -68,11 +64,7 @@ Page {
             placeholderText: qsTr("Master password")
             echoMode: TextInput.Password
 
-            onTextChanged: {
-                if (text.length > 0 && name.text.length > 0) {
-                    save.enabled = true;
-                }
-            }
+            onTextChanged: save.enabled = (text.length > 0 && name.text.length > 0)
         }
 
         ComboBox {
