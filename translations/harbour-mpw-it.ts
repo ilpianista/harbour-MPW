@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="it">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="it" version="2.1">
 <context>
     <name>MainPage</name>
     <message>
@@ -36,7 +34,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Siti</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="130"/>
@@ -66,17 +64,17 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="59"/>
         <source>Clear sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella siti</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="74"/>
         <source>Clear password</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella password</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="121"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="132"/>
@@ -109,32 +107,32 @@
     <message>
         <location filename="../qml/pages/Settings.qml" line="80"/>
         <source>Algorithm version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versione algoritmo</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="85"/>
         <source>V0</source>
-        <translation type="unfinished"></translation>
+        <translation>V0</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="86"/>
         <source>V1</source>
-        <translation type="unfinished"></translation>
+        <translation>V1</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="87"/>
         <source>V2</source>
-        <translation type="unfinished"></translation>
+        <translation>V2</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="88"/>
         <source>V3</source>
-        <translation type="unfinished"></translation>
+        <translation>V3</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="100"/>
         <source>Generate</source>
-        <translation type="unfinished"></translation>
+        <translation>Genera</translation>
     </message>
 </context>
 <context>
@@ -142,12 +140,12 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="43"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella</translation>
     </message>
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="79"/>
         <source>Deleting</source>
-        <translation type="unfinished"></translation>
+        <translation>Sto cancellando...</translation>
     </message>
 </context>
 </TS>
