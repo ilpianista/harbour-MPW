@@ -38,7 +38,7 @@ public:
     virtual ~AsyncMasterKey();
 
 Q_SIGNALS:
-    void finished(QByteArray *key);
+    void finished(QByteArray *key, const QString &fingerprint);
 
 public Q_SLOTS:
     void generate();

@@ -1,3 +1,6 @@
+* Wed Jul 20 2016 Andrea Scarpino <me@andreascarpino.it> 0.2.1-1
+- Show a visible fingerprint for the generated password
+
 * Tue Jun 07 2016 Andrea Scarpino <me@andreascarpino.it> 0.2.0-1
 - Store sites and their preferences
 - Show password in cover page

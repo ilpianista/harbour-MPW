@@ -59,6 +59,7 @@ public:
 
     Q_INVOKABLE AlgorithmVersion getAlgorithmVersion() const;
     Q_INVOKABLE QString getName() const;
+    Q_INVOKABLE QString getFingerprint() const;
     Q_INVOKABLE void setAlgorithmVersion(AlgorithmVersion version);
     Q_INVOKABLE void setName(const QString &name);
 
@@ -73,10 +74,10 @@ public:
     static MPSiteType toMPSiteType(PasswordType type);
 
 Q_SIGNALS:
-    void generatedMasterKey();
+    void generatedMasterKey(const QString &fingerprint);
 
 protected Q_SLOTS:
-    void gotMasterKey(QByteArray *key);
+    void gotMasterKey(QByteArray *key, const QString &fingerprint);
 
 private:
     AlgorithmVersion algVersionFromInt(const uint &version);
@@ -84,6 +85,7 @@ private:
     DBManager *m_db;
     SitesSqlModel* m_model;
     QString m_name;
+    QString m_fingerprint;
     AlgorithmVersion m_algVersion;
     QByteArray *m_key;
     QSettings *m_settings;

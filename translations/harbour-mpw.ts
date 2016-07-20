@@ -102,37 +102,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="68"/>
+        <location filename="../qml/pages/Settings.qml" line="64"/>
         <source>Master password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="80"/>
+        <location filename="../qml/pages/Settings.qml" line="72"/>
         <source>Algorithm version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="85"/>
+        <location filename="../qml/pages/Settings.qml" line="77"/>
         <source>V0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="86"/>
+        <location filename="../qml/pages/Settings.qml" line="78"/>
         <source>V1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="87"/>
+        <location filename="../qml/pages/Settings.qml" line="79"/>
         <source>V2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="88"/>
+        <location filename="../qml/pages/Settings.qml" line="80"/>
         <source>V3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="100"/>
+        <location filename="../qml/pages/Settings.qml" line="97"/>
         <source>Generate</source>
         <translation type="unfinished"></translation>
     </message>

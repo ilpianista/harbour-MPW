@@ -62,6 +62,11 @@ QString MPWManager::getName() const
     return m_name;
 }
 
+QString MPWManager::getFingerprint() const
+{
+    return m_fingerprint;
+}
+
 void MPWManager::setAlgorithmVersion(AlgorithmVersion version)
 {
     qDebug() << "Using algorithm version:" << version;
@@ -92,12 +97,13 @@ void MPWManager::generateMasterKey(const QString &name, const QString &password,
     thread->start();
 }
 
-void MPWManager::gotMasterKey(QByteArray *key)
+void MPWManager::gotMasterKey(QByteArray *key, const QString &fingerprint)
 {
     qDebug() << "Storing master key";
     m_key = key;
 
-    Q_EMIT generatedMasterKey();
+    m_fingerprint = fingerprint;
+    Q_EMIT generatedMasterKey(fingerprint);
 }
 
 QString MPWManager::getPassword(const QString &site, PasswordType type, const uint counter) const
