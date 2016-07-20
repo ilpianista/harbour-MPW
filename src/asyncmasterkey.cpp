@@ -32,6 +32,11 @@ extern "C"
 #define MPWALGORITHM_H
 #include <mpw-algorithm.h>
 #endif
+
+#ifndef MPWUTIL_H
+#define MPWUTIL_H
+#include <mpw-util.h>
+#endif
 }
 
 AsyncMasterKey::AsyncMasterKey(const QString &name, const QString &password,
@@ -56,5 +61,7 @@ void AsyncMasterKey::generate()
         qCritical() << "Error during master key generation.";
     }
 
-    Q_EMIT finished(key);
+    const char* fingerprint = mpw_identicon(m_name.toUtf8().data(), m_password.toUtf8().data());
+
+    Q_EMIT finished(key, QString::fromUtf8(fingerprint));
 }

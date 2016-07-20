@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="it" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="it">
 <context>
     <name>MainPage</name>
     <message>
@@ -100,37 +102,37 @@
         <translation>Nome completo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="68"/>
+        <location filename="../qml/pages/Settings.qml" line="64"/>
         <source>Master password</source>
         <translation>Master password</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="80"/>
+        <location filename="../qml/pages/Settings.qml" line="72"/>
         <source>Algorithm version</source>
         <translation>Versione algoritmo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="85"/>
+        <location filename="../qml/pages/Settings.qml" line="77"/>
         <source>V0</source>
         <translation>V0</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="86"/>
+        <location filename="../qml/pages/Settings.qml" line="78"/>
         <source>V1</source>
         <translation>V1</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="87"/>
+        <location filename="../qml/pages/Settings.qml" line="79"/>
         <source>V2</source>
         <translation>V2</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="88"/>
+        <location filename="../qml/pages/Settings.qml" line="80"/>
         <source>V3</source>
         <translation>V3</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="100"/>
+        <location filename="../qml/pages/Settings.qml" line="97"/>
         <source>Generate</source>
         <translation>Genera</translation>
     </message>

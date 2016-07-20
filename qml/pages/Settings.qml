@@ -34,9 +34,9 @@ Page {
         target: manager
 
         onGeneratedMasterKey: {
+            fprint.text = fingerprint;
             busy.visible = busy.running = false;
             name.enabled = password.enabled = version.enabled = true;
-            pageStack.pop();
         }
     }
 
@@ -87,6 +87,11 @@ Page {
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
+        Label {
+            id: fprint
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
         Button {
             id: save
             text: qsTr("Generate");
@@ -96,6 +101,7 @@ Page {
             onClicked: {
                 enabled = name.enabled = password.enabled = version.enabled = false;
                 busy.visible = busy.running = true;
+                fprint.text = "";
                 manager.generateMasterKey(name.text, password.text, version.currentIndex);
             }
         }
@@ -103,6 +109,7 @@ Page {
 
     Component.onCompleted: {
         name.text = manager.getName();
+        fprint.text = manager.getFingerprint();
 
         if (name.text.length > 0) {
             password.forceActiveFocus();
