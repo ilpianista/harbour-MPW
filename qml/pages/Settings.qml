@@ -102,7 +102,7 @@ Page {
                 enabled = name.enabled = password.enabled = version.enabled = false;
                 busy.visible = busy.running = true;
                 fprint.text = "";
-                manager.generateMasterKey(name.text, password.text, version.currentIndex);
+                manager.generateMasterKey(name.text.trim(), password.text.trim(), version.currentIndex);
             }
         }
     }
