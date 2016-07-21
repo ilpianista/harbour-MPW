@@ -106,6 +106,7 @@ Page {
                 width: parent.width
                 inputMethodHints: Qt.ImhUrlCharactersOnly
                 placeholderText: qsTr("Site name (e.g. google.com)")
+                validator: RegExpValidator { regExp: /^[\w\.-]*$/ }
                 enabled: false
 
                 EnterKey.enabled: siteUrl.text.length > 0 && siteCounter.text.length > 0
