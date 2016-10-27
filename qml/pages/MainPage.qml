@@ -158,7 +158,12 @@ Page {
                 color: Theme.secondaryColor
                 horizontalAlignment: TextInput.AlignHCenter
                 wrapMode: Text.Wrap
-                text: qsTr("Please fill your name and master password in the Settings page!")
+                text: qsTr("Touch here to set your master password or use the Settings page!")
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
+                }
             }
 
             SectionHeader {
