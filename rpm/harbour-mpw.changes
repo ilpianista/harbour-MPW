@@ -1,3 +1,9 @@
+* Thu Oct 27 2016 Andrea Scarpino <me@andreascarpino.it> 0.2.2-1
+- Always trim name and master password
+- Allow only valid chars for websites
+- Fix websites saving when type is Medium
+- Allow to set the master key by touching the label in the home at first boot
+
 * Wed Jul 20 2016 Andrea Scarpino <me@andreascarpino.it> 0.2.1-1
 - Show a visible fingerprint for the generated password
 
