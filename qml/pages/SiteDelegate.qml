@@ -49,10 +49,7 @@ ListItem {
         siteUrl.text = site;
         sitePwdType.currentIndex = typeIndexFromString(type);
         siteCounter.text = counter;
-
-        if (masterKey) {
-            getPassword();
-        }
+        getPassword();
     }
 
     function typeIndexFromString(type) {

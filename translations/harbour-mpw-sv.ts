@@ -4,72 +4,72 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="52"/>
+        <location filename="../qml/pages/MainPage.qml" line="51"/>
         <source>Settings</source>
         <translation>Inställningar</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="86"/>
+        <location filename="../qml/pages/MainPage.qml" line="85"/>
         <source>Copy to clipboard</source>
         <translation>Kopiera till urklipp</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="108"/>
+        <location filename="../qml/pages/MainPage.qml" line="107"/>
         <source>Site name (e.g. google.com)</source>
         <translation>Sidnamn (ex. google.com)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="143"/>
+        <location filename="../qml/pages/MainPage.qml" line="146"/>
         <source>Counter</source>
         <translation>Räknare</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="131"/>
+        <location filename="../qml/pages/MainPage.qml" line="132"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="157"/>
+        <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Please fill your name and master password in the Settings page!</source>
-        <translation>Ange ditt namn och huvudlösenord i inställningar!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="161"/>
+        <location filename="../qml/pages/MainPage.qml" line="165"/>
         <source>Sites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="130"/>
+        <location filename="../qml/pages/MainPage.qml" line="131"/>
         <source>Short</source>
         <translation>Kort</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="129"/>
+        <location filename="../qml/pages/MainPage.qml" line="130"/>
         <source>Basic</source>
         <translation>Enkelt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="128"/>
+        <location filename="../qml/pages/MainPage.qml" line="129"/>
         <source>Medium</source>
         <translation>Medium</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="127"/>
+        <location filename="../qml/pages/MainPage.qml" line="128"/>
         <source>Long</source>
         <translation>Långt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="126"/>
+        <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Maximum</source>
         <translation>Maximalt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="59"/>
+        <location filename="../qml/pages/MainPage.qml" line="58"/>
         <source>Clear sites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="74"/>
+        <location filename="../qml/pages/MainPage.qml" line="73"/>
         <source>Clear password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -79,12 +79,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="132"/>
+        <location filename="../qml/pages/MainPage.qml" line="133"/>
         <source>Name</source>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="133"/>
+        <location filename="../qml/pages/MainPage.qml" line="134"/>
         <source>Phrase</source>
         <translation>Fras</translation>
     </message>
@@ -145,7 +145,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SiteDelegate.qml" line="79"/>
+        <location filename="../qml/pages/SiteDelegate.qml" line="76"/>
         <source>Deleting</source>
         <translation type="unfinished"></translation>
     </message>

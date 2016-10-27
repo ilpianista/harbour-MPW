@@ -37,7 +37,6 @@ Page {
 
         onGeneratedMasterKey: {
             masterKey = true;
-            siteUrl.enabled = true;
             password.text = "";
         }
     }
@@ -107,7 +106,7 @@ Page {
                 inputMethodHints: Qt.ImhUrlCharactersOnly
                 placeholderText: qsTr("Site name (e.g. google.com)")
                 validator: RegExpValidator { regExp: /^[\w\.-]*$/ }
-                enabled: false
+                enabled: masterKey
 
                 EnterKey.enabled: siteUrl.text.length > 0 && siteCounter.text.length > 0
                 EnterKey.onClicked: getPassword()
@@ -122,6 +121,7 @@ Page {
                     label: qsTr("Type")
                     currentIndex: 1
                     width: parent.width - siteCounter.width
+                    enabled: masterKey
 
                     menu: ContextMenu {
                         MenuItem { text: qsTr("Maximum") }
@@ -133,6 +133,8 @@ Page {
                         MenuItem { text: qsTr("Name") }
                         MenuItem { text: qsTr("Phrase") }
                     }
+
+                    onValueChanged: getPassword()
                 }
 
                 TextField {
@@ -142,6 +144,7 @@ Page {
                     inputMethodHints: Qt.ImhDigitsOnly
                     validator: RegExpValidator { regExp: /^[0-9]+$/ }
                     placeholderText: qsTr("Counter")
+                    enabled: masterKey
 
                     EnterKey.enabled: siteUrl.text.length > 0 && siteCounter.text.length > 0
                     EnterKey.onClicked: getPassword()
@@ -165,6 +168,7 @@ Page {
             Repeater {
                 id: sites
                 model: recentSites
+                enabled: masterKey
                 delegate: SiteDelegate {}
             }
         }
@@ -173,11 +177,13 @@ Page {
     }
 
     function getPassword() {
-        var pwd = manager.getPassword(siteUrl.text, sitePwdType.currentIndex, siteCounter.text);
-        password.text = pwd;
-        clearPwd.enabled = true;
-        copy.enabled = true;
-        appWindow.password = pwd;
+        if (masterKey) {
+            var pwd = manager.getPassword(siteUrl.text, sitePwdType.currentIndex, siteCounter.text);
+            password.text = pwd;
+            clearPwd.enabled = true;
+            copy.enabled = true;
+            appWindow.password = pwd;
+        }
     }
 
 }
