@@ -30,11 +30,11 @@
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
-        <source>Please fill your name and master password in the Settings page!</source>
+        <source>Touch here to set your master password or use the Settings page!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="165"/>
+        <location filename="../qml/pages/MainPage.qml" line="170"/>
         <source>Sites</source>
         <translation type="unfinished"></translation>
     </message>
