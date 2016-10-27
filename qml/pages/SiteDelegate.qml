@@ -57,7 +57,7 @@ ListItem {
             return 0;
         } else if (type === "Long") {
             return 1;
-        } else if (type === "Minium") {
+        } else if (type === "Medium") {
             return 2;
         } else if (type === "Basic") {
             return 3;
