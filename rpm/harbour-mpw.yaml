@@ -25,17 +25,17 @@ PkgConfigBR:
   - Qt5Core
   - Qt5Qml
   - Qt5Quick
+  - openssl
 
 # Build dependencies without a pkgconfig setup can be listed here
 PkgBR:
   - libmpw
-  - openssl-devel
+  - libmpw-devel
 
 # Runtime dependencies which are not automatically detected
 Requires:
-  - sailfishsilica-qt5 >= 0.10.9 
+  - sailfishsilica-qt5 >= 0.10.9
   - libmpw
-  - openssl
 
 # All installed files
 Files:
