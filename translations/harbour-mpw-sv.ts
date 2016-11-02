@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="sv">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sv" version="2.1">
 <context>
     <name>MainPage</name>
     <message>
@@ -31,12 +29,12 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Touch here to set your master password or use the Settings page!</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryck här för att ange ditt huvudlösenord, eller använd inställningssidan.</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="170"/>
         <source>Sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidor</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="131"/>
@@ -66,17 +64,17 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="58"/>
         <source>Clear sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Rensa sidor</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="73"/>
         <source>Clear password</source>
-        <translation type="unfinished"></translation>
+        <translation>Rensa lösenord</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="121"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="133"/>
@@ -109,32 +107,32 @@
     <message>
         <location filename="../qml/pages/Settings.qml" line="72"/>
         <source>Algorithm version</source>
-        <translation type="unfinished"></translation>
+        <translation>Algoritmversion</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="77"/>
         <source>V0</source>
-        <translation type="unfinished"></translation>
+        <translation>V0</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="78"/>
         <source>V1</source>
-        <translation type="unfinished"></translation>
+        <translation>V1</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="79"/>
         <source>V2</source>
-        <translation type="unfinished"></translation>
+        <translation>V2</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="80"/>
         <source>V3</source>
-        <translation type="unfinished"></translation>
+        <translation>V3</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="97"/>
         <source>Generate</source>
-        <translation type="unfinished"></translation>
+        <translation>Generera</translation>
     </message>
 </context>
 <context>
@@ -142,12 +140,12 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="43"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="76"/>
         <source>Deleting</source>
-        <translation type="unfinished"></translation>
+        <translation>Tar bort</translation>
     </message>
 </context>
 </TS>
