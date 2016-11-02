@@ -74,10 +74,10 @@ Page {
             width: page.width
 
             menu: ContextMenu {
-                MenuItem { text: qsTr("V0") }
-                MenuItem { text: qsTr("V1") }
-                MenuItem { text: qsTr("V2") }
-                MenuItem { text: qsTr("V3") }
+                MenuItem { text: "V0" }
+                MenuItem { text: "V1" }
+                MenuItem { text: "V2" }
+                MenuItem { text: "V3" }
             }
         }
 
