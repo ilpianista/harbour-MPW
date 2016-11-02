@@ -112,26 +112,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="77"/>
-        <source>V0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Settings.qml" line="78"/>
-        <source>V1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Settings.qml" line="79"/>
-        <source>V2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Settings.qml" line="80"/>
-        <source>V3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../qml/pages/Settings.qml" line="97"/>
         <source>Generate</source>
         <translation type="unfinished"></translation>
