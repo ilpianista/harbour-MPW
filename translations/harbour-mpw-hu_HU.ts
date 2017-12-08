@@ -1,90 +1,90 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="it" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu_HU" version="2.1">
 <context>
     <name>MainPage</name>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="51"/>
         <source>Settings</source>
-        <translation>Impostazioni</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="85"/>
         <source>Copy to clipboard</source>
-        <translation>Copia negli appunti</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="107"/>
         <source>Site name (e.g. google.com)</source>
-        <translation>Sito web (google.com, ...)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="146"/>
         <source>Counter</source>
-        <translation>Contatore</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="132"/>
         <source>PIN</source>
-        <translation>PIN</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Touch here to set your master password or use the Settings page!</source>
-        <translation>Tocca qui per settare la master password o usa la pagina Impostazioni!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="170"/>
         <source>Sites</source>
-        <translation>Siti</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="131"/>
         <source>Short</source>
-        <translation>Corta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="130"/>
         <source>Basic</source>
-        <translation>Semplice</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="129"/>
         <source>Medium</source>
-        <translation>Media</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="128"/>
         <source>Long</source>
-        <translation>Lunga</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Maximum</source>
-        <translation>Massima</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="58"/>
         <source>Clear sites</source>
-        <translation>Cancella siti</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="73"/>
         <source>Clear password</source>
-        <translation>Cancella password</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="121"/>
         <source>Type</source>
-        <translation>Tipo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="133"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="134"/>
         <source>Phrase</source>
-        <translation>Frase</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -92,27 +92,27 @@
     <message>
         <location filename="../qml/pages/Settings.qml" line="49"/>
         <source>Settings</source>
-        <translation>Impostazioni</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="56"/>
         <source>Full name</source>
-        <translation>Nome completo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="64"/>
         <source>Master password</source>
-        <translation>Master password</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="72"/>
         <source>Algorithm version</source>
-        <translation>Versione algoritmo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="97"/>
         <source>Generate</source>
-        <translation>Genera</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -120,12 +120,12 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="43"/>
         <source>Delete</source>
-        <translation>Cancella</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="76"/>
         <source>Deleting</source>
-        <translation>Sto cancellando...</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

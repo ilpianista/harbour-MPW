@@ -37,5 +37,9 @@ INCLUDEPATH += "/usr/include/mpw"
 LIBS += -lmpw -lcrypto
 
 TRANSLATIONS += \
+    translations/harbour-mpw-ar.ts \
+    translations/harbour-mpw-de.ts \
+    translations/harbour-mpw-el.ts \
+    translations/harbour-mpw-hu_HU.ts \
     translations/harbour-mpw-it.ts \
     translations/harbour-mpw-sv.ts
