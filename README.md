@@ -6,7 +6,9 @@ A [MasterPassword](http://masterpasswordapp.com/) client for [Sailfish OS](https
 
 ## Translations
 
-Translations via [Transifex](https://www.transifex.com/ilpianista-harbour/harbour-MPW/dashboard/), thank you!
+[![Translation status](https://hosted.weblate.org/widgets/harbour-mpw/-/svg-badge.svg)](https://hosted.weblate.org/engage/harbour-mpw/?utm_source=widget)
+
+Translations via [Weblate](https://hosted.weblate.org/projects/harbour-mpw/), thank you!
 
 ## Donate
 
