@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sv" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="sv" version="2.1">
 <context>
     <name>MainPage</name>
     <message>
@@ -29,7 +31,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Touch here to set your master password or use the Settings page!</source>
-        <translation>Tryck här för att ange ditt huvudlösenord, eller använd inställningssidan.</translation>
+        <translation>Tryck här för att ange ditt huvudlösenord, eller använd inställningssidan!</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="170"/>
