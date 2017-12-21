@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="it" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="it" version="2.1">
 <context>
     <name>MainPage</name>
     <message>
@@ -125,7 +127,7 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="76"/>
         <source>Deleting</source>
-        <translation>Sto cancellando...</translation>
+        <translation>Sto cancellando</translation>
     </message>
 </context>
 </TS>
