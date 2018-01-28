@@ -6,12 +6,12 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="51"/>
         <source>Settings</source>
-        <translation></translation>
+        <translation>Seaded</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="85"/>
         <source>Copy to clipboard</source>
-        <translation></translation>
+        <translation>Kopeeri lõikelauale</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="107"/>
@@ -21,7 +21,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="146"/>
         <source>Counter</source>
-        <translation></translation>
+        <translation>Loendur</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="132"/>
