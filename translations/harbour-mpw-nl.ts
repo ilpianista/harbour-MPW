@@ -6,57 +6,57 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="51"/>
         <source>Settings</source>
-        <translation></translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="85"/>
         <source>Copy to clipboard</source>
-        <translation></translation>
+        <translation>Kopiëren naar klembord</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="107"/>
         <source>Site name (e.g. google.com)</source>
-        <translation></translation>
+        <translation>Sitenaam (bijv. google.nl)</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="146"/>
         <source>Counter</source>
-        <translation></translation>
+        <translation>Teller</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="132"/>
         <source>PIN</source>
-        <translation></translation>
+        <translation>PIN-code</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Touch here to set your master password or use the Settings page!</source>
-        <translation></translation>
+        <translation>Druk hier om een hoofdwachtwoord in te stellen of gebruik de Instellingen-pagina!</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="170"/>
         <source>Sites</source>
-        <translation></translation>
+        <translation>Websites</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="131"/>
         <source>Short</source>
-        <translation></translation>
+        <translation>Kort</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="130"/>
         <source>Basic</source>
-        <translation></translation>
+        <translation>Basis</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="129"/>
         <source>Medium</source>
-        <translation></translation>
+        <translation>Gemiddeld</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="128"/>
         <source>Long</source>
-        <translation></translation>
+        <translation>Lang</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="127"/>
@@ -66,12 +66,12 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="58"/>
         <source>Clear sites</source>
-        <translation></translation>
+        <translation>Sites wissen</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="73"/>
         <source>Clear password</source>
-        <translation></translation>
+        <translation>Wachtwoord wissen</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="121"/>
@@ -81,12 +81,12 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="133"/>
         <source>Name</source>
-        <translation></translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="134"/>
         <source>Phrase</source>
-        <translation></translation>
+        <translation>Zin</translation>
     </message>
 </context>
 <context>
@@ -94,27 +94,27 @@
     <message>
         <location filename="../qml/pages/Settings.qml" line="49"/>
         <source>Settings</source>
-        <translation></translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="56"/>
         <source>Full name</source>
-        <translation></translation>
+        <translation>Volledige naam</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="64"/>
         <source>Master password</source>
-        <translation></translation>
+        <translation>Hoofdwachtwoord</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="72"/>
         <source>Algorithm version</source>
-        <translation></translation>
+        <translation>Algoritme-versie</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="97"/>
         <source>Generate</source>
-        <translation></translation>
+        <translation>Genereren</translation>
     </message>
 </context>
 <context>
@@ -122,12 +122,12 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="43"/>
         <source>Delete</source>
-        <translation></translation>
+        <translation>Verwijderen</translation>
     </message>
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="76"/>
         <source>Deleting</source>
-        <translation></translation>
+        <translation>Bezig met verwijderen</translation>
     </message>
 </context>
 </TS>
