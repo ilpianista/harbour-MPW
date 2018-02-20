@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="de" version="2.1">
 <context>
     <name>MainPage</name>
     <message>
@@ -29,7 +31,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Touch here to set your master password or use the Settings page!</source>
-        <translation>Hier berühren um das Masterpasswort zu setzen oder in die Einstellungen zu gelangen!</translation>
+        <translation>Hier tippen, um das Masterpasswort festzulegen oder in die Einstellungen zu wechseln!</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="170"/>
@@ -84,7 +86,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="134"/>
         <source>Phrase</source>
-        <translation>Phrase</translation>
+        <translation>Ausdruck</translation>
     </message>
 </context>
 <context>
@@ -107,7 +109,7 @@
     <message>
         <location filename="../qml/pages/Settings.qml" line="72"/>
         <source>Algorithm version</source>
-        <translation>Version des Algorhitmus</translation>
+        <translation>Version des Algorithmus</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="97"/>
@@ -125,7 +127,7 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="76"/>
         <source>Deleting</source>
-        <translation>Löschen...</translation>
+        <translation>Löschen …</translation>
     </message>
 </context>
 </TS>
