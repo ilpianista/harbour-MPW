@@ -26,7 +26,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="132"/>
         <source>PIN</source>
-        <translation>PIN-code</translation>
+        <translation>Pincode</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="76"/>
         <source>Deleting</source>
-        <translation>Bezig met verwijderen</translation>
+        <translation>Wordt verwijderd</translation>
     </message>
 </context>
 </TS>
