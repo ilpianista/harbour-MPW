@@ -31,7 +31,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Touch here to set your master password or use the Settings page!</source>
-        <translation>Drukt hier voor een hoofdpaswoord in te stellen of gebruikt d’Instellingen-pagina!</translation>
+        <translation>Drukt hier voor een hoofdpaswoord in te stellen of gebruikt de Instellingen-pagina!</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="170"/>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="76"/>
         <source>Deleting</source>
-        <translation>Word verwijderd</translation>
+        <translation>Wordt verwijderd</translation>
     </message>
 </context>
 </TS>
