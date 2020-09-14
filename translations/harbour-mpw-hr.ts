@@ -6,87 +6,87 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="51"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Postavke</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="85"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiraj u međuspremnik</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="107"/>
         <source>Site name (e.g. google.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ime web-mjesta (npr. google.com)</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="146"/>
         <source>Counter</source>
-        <translation type="unfinished"></translation>
+        <translation>Brojač</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="132"/>
         <source>PIN</source>
-        <translation type="unfinished"></translation>
+        <translation>PIN</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="161"/>
         <source>Touch here to set your master password or use the Settings page!</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodirni ovdje za postavljanje glavne lozinke ili koristi stranicu Postavke!</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="170"/>
         <source>Sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Web-mjesta</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="131"/>
         <source>Short</source>
-        <translation type="unfinished"></translation>
+        <translation>Kratko</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="130"/>
         <source>Basic</source>
-        <translation type="unfinished"></translation>
+        <translation>Osnovno</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="129"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>Srednje</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="128"/>
         <source>Long</source>
-        <translation type="unfinished"></translation>
+        <translation>Dugačko</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksimalno</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="58"/>
         <source>Clear sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Izbriši web-mjesta</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="73"/>
         <source>Clear password</source>
-        <translation type="unfinished"></translation>
+        <translation>Izbriši lozinku</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="121"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrsta</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="133"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="134"/>
         <source>Phrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Izraz</translation>
     </message>
 </context>
 <context>
@@ -94,27 +94,27 @@
     <message>
         <location filename="../qml/pages/Settings.qml" line="49"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Postavke</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="56"/>
         <source>Full name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ime i prezime</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="64"/>
         <source>Master password</source>
-        <translation type="unfinished"></translation>
+        <translation>Glavna lozinka</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="72"/>
         <source>Algorithm version</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzija algoritma</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="97"/>
         <source>Generate</source>
-        <translation type="unfinished"></translation>
+        <translation>Generiraj</translation>
     </message>
 </context>
 <context>
@@ -122,12 +122,12 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="43"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Izbriši</translation>
     </message>
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="76"/>
         <source>Deleting</source>
-        <translation type="unfinished"></translation>
+        <translation>Brisanje</translation>
     </message>
 </context>
 </TS>
