@@ -1,3 +1,9 @@
+* Fri Aug 6 2021 Andrea Scarpino <andrea@scarpino.dev> 0.2.3-1
+- Use V3 by default
+- New icon by Jorren `jsehv` Schauwaert
+- Update to latest libmpw
+- Update and add several translations
+
 * Thu Oct 27 2016 Andrea Scarpino <me@andreascarpino.it> 0.2.2-1
 - Always trim name and master password
 - Allow only valid chars for websites
