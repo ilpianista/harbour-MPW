@@ -41,7 +41,7 @@ MPWManager::MPWManager(QObject *parent) :
     m_settings = new QSettings(QCoreApplication::applicationName(), QCoreApplication::applicationName(), this);
 
     m_name = m_settings->value("Name").toString();
-    m_algVersion = algVersionFromInt(m_settings->value("Algorithm").toUInt());
+    m_algVersion = algVersionFromInt(m_settings->value("Algorithm", 3).toUInt());
 }
 
 MPWManager::~MPWManager()
