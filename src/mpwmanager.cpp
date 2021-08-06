@@ -108,9 +108,9 @@ void MPWManager::gotMasterKey(QByteArray *key, const QString &fingerprint)
 
 QString MPWManager::getPassword(const QString &site, PasswordType type, const uint counter) const
 {
-    const char* p = mpw_passwordForSite((const unsigned char*) m_key->data(), site.toUtf8().data(),
-                                        toMPSiteType(type), counter, MPSiteVariantPassword, NULL,
-                                        toMPAlgorithmVersion(m_algVersion));
+    const char* p = mpw_siteResult((const unsigned char*) m_key->data(), site.toUtf8().data(),
+                                   counter, MPKeyPurposeAuthentication, NULL, toMPSiteType(type),
+                                   NULL, toMPAlgorithmVersion(m_algVersion));
 
     if (p) {
         m_db->insert(site, type, counter);
@@ -136,18 +136,18 @@ MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version)
     return v;
 }
 
-MPSiteType MPWManager::toMPSiteType(PasswordType type)
+MPResultType MPWManager::toMPSiteType(PasswordType type)
 {
-    MPSiteType t = MPSiteTypeGeneratedLong;
+    MPResultType t = MPResultTypeTemplateLong;
     switch (type) {
-        case Maximum: t = MPSiteTypeGeneratedMaximum; break;
-        case Long: t = MPSiteTypeGeneratedLong; break;
-        case Medium: t = MPSiteTypeGeneratedMedium; break;
-        case Basic: t = MPSiteTypeGeneratedBasic; break;
-        case Short: t = MPSiteTypeGeneratedShort; break;
-        case PIN: t = MPSiteTypeGeneratedPIN; break;
-        case Name: t = MPSiteTypeGeneratedName; break;
-        case Phrase: t = MPSiteTypeGeneratedPhrase; break;
+        case Maximum: t = MPResultTypeTemplateMaximum; break;
+        case Long: t = MPResultTypeTemplateLong; break;
+        case Medium: t = MPResultTypeTemplateMedium; break;
+        case Basic: t = MPResultTypeTemplateBasic; break;
+        case Short: t = MPResultTypeTemplateShort; break;
+        case PIN: t = MPResultTypeTemplatePIN; break;
+        case Name: t = MPResultTypeTemplateName; break;
+        case Phrase: t = MPResultTypeTemplatePhrase; break;
         default: qCritical() << "Unrecognized password type:" << type;
     }
 

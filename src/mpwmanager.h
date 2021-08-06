@@ -71,7 +71,7 @@ public:
     SitesSqlModel* recentSites();
 
     static MPAlgorithmVersion toMPAlgorithmVersion(AlgorithmVersion version);
-    static MPSiteType toMPSiteType(PasswordType type);
+    static MPResultType toMPSiteType(PasswordType type);
 
 Q_SIGNALS:
     void generatedMasterKey(const QString &fingerprint);

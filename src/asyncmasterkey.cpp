@@ -51,17 +51,20 @@ AsyncMasterKey::~AsyncMasterKey()
 
 void AsyncMasterKey::generate()
 {
-    const uint8_t* k = mpw_masterKeyForUser(m_name.toUtf8().data(), m_password.toUtf8().data(),
-                                            MPWManager::toMPAlgorithmVersion(m_algVersion));
+    const uint8_t* k = mpw_masterKey(m_name.toUtf8().data(), m_password.toUtf8().data(),
+                                     MPWManager::toMPAlgorithmVersion(m_algVersion));
 
     QByteArray* key = 0;
     if (k) {
-        key = new QByteArray((const char*) k, MP_dkLen);
+        key = new QByteArray((const char*) k, MPMasterKeySize);
     } else {
         qCritical() << "Error during master key generation.";
     }
 
-    const char* fingerprint = mpw_identicon(m_name.toUtf8().data(), m_password.toUtf8().data());
+    MPIdenticon fingerprint = mpw_identicon(m_name.toUtf8().data(), m_password.toUtf8().data());
 
-    Q_EMIT finished(key, QString::fromUtf8(fingerprint));
+    Q_EMIT finished(key, QString::fromUtf8(fingerprint.leftArm)
+                    + QString::fromUtf8(fingerprint.body)
+                    + QString::fromUtf8(fingerprint.rightArm)
+                    + QString::fromUtf8(fingerprint.accessory));
 }
