@@ -32,7 +32,24 @@ BuildRequires:  libmpw-devel
 BuildRequires:  desktop-file-utils
 
 %description
-MasterPassword client
+MasterPassword client.
+
+%if "%{?vendor}" == "chum"
+PackageName: MPW
+Type: desktop-application
+DeveloperName: Andrea Scarpino
+Categories:
+ - Utility
+Custom:
+  Repo: https://gitlab.com/ilpianista/harbour-MPW
+Icon: https://gitlab.com/ilpianista/harbour-MPW/-/raw/master/icons/harbour-mpw.svg
+Screenshots:
+ - https://gitlab.com/ilpianista/harbour-MPW/-/raw/master/screenshots/screenshot_1.png
+Url:
+  Homepage: https://gitlab.com/ilpianista/harbour-MPW
+  Bugtracker: https://gitlab.com/ilpianista/harbour-MPW/-/issues
+  Donation: https://paypal.me/andreascarpino
+%endif
 
 
 %prep
