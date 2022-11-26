@@ -22,13 +22,13 @@ Description: |
    - Utility
   Custom:
     Repo: https://github.com/ilpianista/harbour-MPW
-  Icon: https://github.com/ilpianista/harbour-MPW/-/raw/master/icons/harbour-mpw.svg
+  Icon: https://raw.githubusercontent.com/ilpianista/harbour-MPW/master/icons/harbour-mpw.svg
   Screenshots:
-   - https://github.com/ilpianista/harbour-MPW/-/raw/master/screenshots/screenshot_1.png
+   - https://raw.githubusercontent.com/ilpianista/harbour-MPW/master/screenshots/screenshot_1.png
   Url:
     Homepage: https://github.com/ilpianista/harbour-MPW
     Bugtracker: https://github.com/ilpianista/harbour-MPW/-/issues
-    Donation: https://paypal.me/andreascarpino
+    Donation: https://liberapay.com/ilpianista
   %endif
 Configure: none
 # The qtc5 builder inserts macros to allow QtCreator to have fine
