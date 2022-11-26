@@ -1,8 +1,6 @@
 # MPW
 
-A [MasterPassword](http://masterpasswordapp.com/) client for [Sailfish OS](https://sailfishos.org).
-
-[Build status](https://build.merproject.org/package/live_build_log/home:ilpianista/harbour-mpw/sailfish_latest_armv7hl/armv8el)
+A [MasterPassword](https://masterpassword.app) client for [Sailfish OS](https://sailfishos.org).
 
 ## Translations
 

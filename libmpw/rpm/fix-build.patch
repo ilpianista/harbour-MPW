@@ -1,0 +1,25 @@
+From f9289a3e9e0b0ddc0c4edfd5c5f3cb67d172e64c Mon Sep 17 00:00:00 2001
+From: Maarten Billemont <lhunath@lyndir.com>
+Date: Sun, 17 Jun 2018 00:36:31 -0400
+Subject: [PATCH] Standardize TRUE to true.
+
+---
+ core/mpw-marshal-util.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/mpw-marshal-util.c b/core/mpw-marshal-util.c
+index 17cba9f1..a8c6c12d 100644
+--- a/core/mpw-marshal-util.c
++++ b/core/mpw-marshal-util.c
+@@ -95,7 +95,7 @@ bool mpw_get_json_boolean(
+     if (!json_value)
+         return defaultValue;
+
+-    return json_object_get_boolean( json_value ) == TRUE;
++    return json_object_get_boolean( json_value ) == true;
+ }
+ #endif
+
+--
+GitLab
+

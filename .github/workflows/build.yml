@@ -1,0 +1,103 @@
+name: SailfishOS build
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - master
+
+env:
+  RELEASE: 4.4.0.68
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    - name: Prepare
+      run: mkdir RPMS
+
+    - name: Build armv7hl
+      id: build_armv7hl
+      run: docker run --rm --privileged -v $PWD:/workspace coderus/sailfishos-platform-sdk:$RELEASE /bin/bash -c "
+            mkdir -p build ;
+            cd build ;
+            cp -r /workspace/* . ;
+            cd libsodium ;
+            mb2 -t SailfishOS-$RELEASE-armv7hl build ;
+            sb2 -t SailfishOS-$RELEASE-armv7hl -R zypper -p RPMS in -y libsodium{,-devel} ;
+            cd ../libmpw ;
+            curl -o mpw-2.6-cli-5-0-g344771db.tar.gz https://gitlab.com/MasterPassword/MasterPassword/-/raw/2f96072e3e42887dfe923924451fe73d77db5d0e/mpw-2.6-cli-5-0-g344771db.tar.gz ;
+            tar xfz mpw-2.6-cli-5-0-g344771db.tar.gz ;
+            mb2 -t SailfishOS-$RELEASE-armv7hl build --prepare ;
+            sb2 -t SailfishOS-$RELEASE-armv7hl -R zypper -p RPMS in -y libmpw{,-devel} ;
+            cd .. ;
+            mb2 -t SailfishOS-$RELEASE-armv7hl build ;
+            sudo mkdir -p /workspace/RPMS ;
+            sudo cp -r RPMS/*.rpm /workspace/RPMS"
+
+    - name: Build i486
+      id: build_i486
+      run: docker run --rm --privileged -v $PWD:/workspace coderus/sailfishos-platform-sdk:$RELEASE /bin/bash -c "
+            mkdir -p build ;
+            cd build ;
+            cp -r /workspace/* . ;
+            cd libsodium ;
+            mb2 -t SailfishOS-$RELEASE-i486 build ;
+            sb2 -t SailfishOS-$RELEASE-i486 -R zypper -p RPMS in -y libsodium{,-devel} ;
+            cd ../libmpw ;
+            curl -o mpw-2.6-cli-5-0-g344771db.tar.gz https://gitlab.com/MasterPassword/MasterPassword/-/raw/2f96072e3e42887dfe923924451fe73d77db5d0e/mpw-2.6-cli-5-0-g344771db.tar.gz ;
+            tar xfz mpw-2.6-cli-5-0-g344771db.tar.gz ;
+            mb2 -t SailfishOS-$RELEASE-i486 build --prepare ;
+            sb2 -t SailfishOS-$RELEASE-i486 -R zypper -p RPMS in -y libmpw{,-devel} ;
+            cd .. ;
+            mb2 -t SailfishOS-$RELEASE-i486 build ;
+            sudo mkdir -p /workspace/RPMS ;
+            sudo cp -r RPMS/*.rpm /workspace/RPMS"
+
+    - name: Build aarch64
+      id: build_aarch64
+      run: docker run --rm --privileged -v $PWD:/workspace coderus/sailfishos-platform-sdk:$RELEASE /bin/bash -c "
+            mkdir -p build ;
+            cd build ;
+            cp -r /workspace/* . ;
+            cd libsodium ;
+            mb2 -t SailfishOS-$RELEASE-aarch64 build ;
+            sb2 -t SailfishOS-$RELEASE-aarch64 -R zypper -p RPMS in -y libsodium{,-devel} ;
+            cd ../libmpw ;
+            curl -o mpw-2.6-cli-5-0-g344771db.tar.gz https://gitlab.com/MasterPassword/MasterPassword/-/raw/2f96072e3e42887dfe923924451fe73d77db5d0e/mpw-2.6-cli-5-0-g344771db.tar.gz ;
+            tar xfz mpw-2.6-cli-5-0-g344771db.tar.gz ;
+            mb2 -t SailfishOS-$RELEASE-aarch64 build --prepare ;
+            sb2 -t SailfishOS-$RELEASE-aarch64 -R zypper -p RPMS in -y libmpw{,-devel} ;
+            cd .. ;
+            mb2 -t SailfishOS-$RELEASE-aarch64 build ;
+            sudo mkdir -p /workspace/RPMS ;
+            sudo cp -r RPMS/*.rpm /workspace/RPMS"
+
+    - name: Upload build result
+      uses: actions/upload-artifact@v2
+      with:
+        name: rpms
+        path: RPMS
+
+    - name: Create release
+      if: contains(github.ref, 'release')
+      run: |
+        set -x
+        assets=()
+        for asset in RPMS/*.rpm; do
+          assets+=("-a" "$asset")
+        done
+        tag_name="${GITHUB_REF##*/}"
+        hub release create "${assets[@]}" -m "$tag_name" "$tag_name"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
