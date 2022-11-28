@@ -12,10 +12,10 @@ URL:        https://masterpassword.app/
 Source0:    mpw-2.6-cli-5-0-g344771db.tar.gz
 Patch0:     fix-build.patch
 Requires:   glibc >= 2.15
-Requires:   openssl
+Requires:   openssl-libs
 Requires:   json-c
 BuildRequires:  glibc-devel >= 2.15
-BuildRequires:  openssl
+BuildRequires:  openssl-devel
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(ncurses)
 BuildRequires:  pkgconfig(json-c)
