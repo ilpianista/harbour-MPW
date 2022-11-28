@@ -61,7 +61,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Maximum</source>
-        <translation></translation>
+        <translation>Maximum</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="58"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="121"/>
         <source>Type</source>
-        <translation></translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="133"/>
