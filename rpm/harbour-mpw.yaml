@@ -53,6 +53,7 @@ PkgBR:
 Requires:
   - sailfishsilica-qt5 >= 0.10.9
   - libmpw
+  - libsodium
 
 # All installed files
 Files:
