@@ -48,7 +48,7 @@ Screenshots:
  - https://raw.githubusercontent.com/ilpianista/harbour-MPW/master/screenshots/screenshot_1.png
 Url:
   Homepage: https://github.com/ilpianista/harbour-MPW
-  Bugtracker: https://github.com/ilpianista/harbour-MPW/-/issues
+  Bugtracker: https://github.com/ilpianista/harbour-MPW/issues
   Donation: https://liberapay.com/ilpianista
 %endif
 
