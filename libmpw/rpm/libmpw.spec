@@ -5,7 +5,7 @@ Name:       libmpw
 
 Summary:    MasterPassword library
 Version:    2.6
-Release:    3
+Release:    4
 Group:      System/Libraries
 License:    GPLv3
 URL:        https://masterpassword.app/
@@ -53,7 +53,7 @@ rm -rf %{buildroot}
 # << install pre
 
 mkdir -p %{buildroot}%{_libdir}
-install -Dm644 libmpw.so %{buildroot}%{_libdir}/libmpw.so.0.0
+install -Dm755 libmpw.so %{buildroot}%{_libdir}/libmpw.so.0.0
 ln -sf %{_libdir}/libmpw.so.0.0 %{buildroot}%{_libdir}/libmpw.so.0
 ln -sf %{_libdir}/libmpw.so.0.0 %{buildroot}%{_libdir}/libmpw.so
 
