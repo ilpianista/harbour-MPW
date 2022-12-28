@@ -46,7 +46,7 @@ DBManager::DBManager(QObject *parent) :
 {
     db = QSqlDatabase::addDatabase(QStringLiteral("QSQLITE"));
 
-    const QString dbPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+    const QString dbPath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
     db.setDatabaseName(dbPath + QDir::separator() + DB_NAME + QStringLiteral(".sql"));
 
     const QDir dir;
