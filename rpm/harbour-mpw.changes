@@ -1,3 +1,6 @@
+* Wed Dec 28 2022 Andrea Scarpino <andrea@scarpino.dev> 0.2.4-1
+- Fix build
+
 * Fri Aug 6 2021 Andrea Scarpino <andrea@scarpino.dev> 0.2.3-1
 - Use V3 by default
 - New icon by Jorren `jsehv` Schauwaert
