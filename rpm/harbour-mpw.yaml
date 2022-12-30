@@ -43,6 +43,7 @@ PkgConfigBR:
   - Qt5Qml
   - Qt5Quick
   - openssl
+  - libsodium
 
 # Build dependencies without a pkgconfig setup can be listed here
 PkgBR:
@@ -53,7 +54,6 @@ PkgBR:
 Requires:
   - sailfishsilica-qt5 >= 0.10.9
   - libmpw
-  - libsodium
 
 # All installed files
 Files:

@@ -22,12 +22,12 @@ Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-mpw.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   libmpw
-Requires:   libsodium
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  libmpw
 BuildRequires:  libmpw-devel
 BuildRequires:  desktop-file-utils
