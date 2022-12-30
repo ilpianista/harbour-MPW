@@ -13,7 +13,7 @@ Name:       harbour-mpw
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    MasterPassword client
-Version:    0.2.4
+Version:    0.2.5
 Release:    1
 Group:      Qt/Qt
 License:    MIT
