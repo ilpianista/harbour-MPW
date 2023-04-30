@@ -5,17 +5,19 @@ Name:       libmpw
 
 Summary:    MasterPassword library
 Version:    2.6
-Release:    3
+Release:    5
 Group:      System/Libraries
 License:    GPLv3
 URL:        https://masterpassword.app/
 Source0:    mpw-2.6-cli-5-0-g344771db.tar.gz
 Patch0:     fix-build.patch
 Requires:   glibc >= 2.15
-Requires:   openssl
+Requires:   openssl-libs
 Requires:   json-c
+Requires(post):   /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
 BuildRequires:  glibc-devel >= 2.15
-BuildRequires:  openssl
+BuildRequires:  openssl-devel
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(ncurses)
 BuildRequires:  pkgconfig(json-c)
@@ -26,6 +28,7 @@ The MasterPassword library
 
 %package devel
 Summary: MasterPassword headers
+Requires:   %{name} = %{version}-%{release}
 
 %description devel
 The MasterPassword headers
@@ -53,9 +56,9 @@ rm -rf %{buildroot}
 # << install pre
 
 mkdir -p %{buildroot}%{_libdir}
-install -Dm644 libmpw.so %{buildroot}%{_libdir}/libmpw.so.0.0
-ln -sf %{_libdir}/libmpw.so.0.0 %{buildroot}%{_libdir}/libmpw.so.0
-ln -sf %{_libdir}/libmpw.so.0.0 %{buildroot}%{_libdir}/libmpw.so
+install -m755 libmpw.so %{buildroot}%{_libdir}/
+ln -sf %{_libdir}/libmpw.so %{buildroot}%{_libdir}/libmpw.so.0
+ln -sf %{_libdir}/libmpw.so %{buildroot}%{_libdir}/libmpw.so.0.0
 
 mkdir -p %{buildroot}/usr/include/mpw
 install -Dm644 core/mpw-{algorithm,types,util}.h %{buildroot}/usr/include/mpw

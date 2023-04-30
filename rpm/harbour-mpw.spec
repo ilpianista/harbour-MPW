@@ -13,7 +13,7 @@ Name:       harbour-mpw
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    MasterPassword client
-Version:    0.2.3
+Version:    0.2.5
 Release:    1
 Group:      Qt/Qt
 License:    MIT
@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(libsodium)
 BuildRequires:  libmpw
 BuildRequires:  libmpw-devel
 BuildRequires:  desktop-file-utils
@@ -47,7 +48,7 @@ Screenshots:
  - https://raw.githubusercontent.com/ilpianista/harbour-MPW/master/screenshots/screenshot_1.png
 Url:
   Homepage: https://github.com/ilpianista/harbour-MPW
-  Bugtracker: https://github.com/ilpianista/harbour-MPW/-/issues
+  Bugtracker: https://github.com/ilpianista/harbour-MPW/issues
   Donation: https://liberapay.com/ilpianista
 %endif
 

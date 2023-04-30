@@ -1,6 +1,6 @@
 Name: harbour-mpw
 Summary: MasterPassword client
-Version: 0.2.3
+Version: 0.2.5
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # http://gitorious.org/meego-developer-tools/spectacle/blobs/master/data/GROUPS
@@ -27,7 +27,7 @@ Description: |
    - https://raw.githubusercontent.com/ilpianista/harbour-MPW/master/screenshots/screenshot_1.png
   Url:
     Homepage: https://github.com/ilpianista/harbour-MPW
-    Bugtracker: https://github.com/ilpianista/harbour-MPW/-/issues
+    Bugtracker: https://github.com/ilpianista/harbour-MPW/issues
     Donation: https://liberapay.com/ilpianista
   %endif
 Configure: none
@@ -43,6 +43,7 @@ PkgConfigBR:
   - Qt5Qml
   - Qt5Quick
   - openssl
+  - libsodium
 
 # Build dependencies without a pkgconfig setup can be listed here
 PkgBR:

@@ -41,16 +41,13 @@ LIBS += -lmpw -lsodium
 TRANSLATIONS += \
     translations/harbour-mpw-ar.ts \
     translations/harbour-mpw-de.ts \
-    translations/harbour-mpw-el.ts \
     translations/harbour-mpw-et.ts \
     translations/harbour-mpw-fi.ts \
     translations/harbour-mpw-fr.ts \
     translations/harbour-mpw-hr.ts \
-    translations/harbour-mpw-hu_HU.ts \
     translations/harbour-mpw-it.ts \
     translations/harbour-mpw-nb_NO.ts \
     translations/harbour-mpw-nl_BE.ts \
     translations/harbour-mpw-nl.ts \
     translations/harbour-mpw-sv.ts \
-    translations/harbour-mpw-tr.ts \
-    translations/harbour-mpw-zh_Hant.ts
+    translations/harbour-mpw-tr.ts
