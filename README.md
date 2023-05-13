@@ -2,6 +2,10 @@
 
 A [MasterPassword](https://masterpassword.app) client for [Sailfish OS](https://sailfishos.org).
 
+## Install
+
+Install via [Chum](https://github.com/sailfishos-chum/main) or [OpenRepos](https://openrepos.net/content/ilpianista/mpw).
+
 ## Translations
 
 [![Translation status](https://hosted.weblate.org/widgets/harbour-mpw/-/svg-badge.svg)](https://hosted.weblate.org/engage/harbour-mpw/?utm_source=widget)
