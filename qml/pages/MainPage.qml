@@ -159,10 +159,12 @@ Page {
                 horizontalAlignment: TextInput.AlignHCenter
                 wrapMode: Text.Wrap
                 text: qsTr("Touch here to set your master password or use the Settings page!")
+                font.pixelSize: masterKey ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
 
                 MouseArea {
                     anchors.fill: parent
                     onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
+                    enabled: !masterKey
                 }
             }
 
