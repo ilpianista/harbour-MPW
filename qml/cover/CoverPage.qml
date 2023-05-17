@@ -27,8 +27,6 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
 
-    property bool hide: true;
-
     CoverPlaceholder {
         id: placeholder
         text: appWindow.password.length > 0 ? "***" : "MPW"
@@ -40,6 +38,8 @@ CoverBackground {
         enabled: appWindow.password.length > 0
 
         CoverAction {
+            property bool hide: true;
+
             iconSource: "image://theme/icon-splus-show-password"
 
             onTriggered: {
