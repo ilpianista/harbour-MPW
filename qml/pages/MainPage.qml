@@ -46,6 +46,8 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
 
+        RemorsePopup { id: remorse }
+
         PullDownMenu {
 
             MenuItem {
@@ -60,13 +62,15 @@ Page {
                 enabled: sites.count > 0
 
                 onClicked: {
-                    if (masterKey) {
-                        password.text = "";
-                        appWindow.password = "";
-                    }
-                    enabled = false;
+                    remorse.execute(qsTr("Clearing sites"), function() {
+                        if (masterKey) {
+                            password.text = "";
+                            appWindow.password = "";
+                        }
+                        enabled = false;
 
-                    manager.clearSites();
+                        manager.clearSites();
+                    });
                 }
             }
 
