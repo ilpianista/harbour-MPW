@@ -1,3 +1,7 @@
+* Tue Sep 19 2023 Andrea Scarpino <andrea@scarpino.dev> 0.3.1-1
+- Add a remorse action for clearing sites
+- Hide the password by default
+
 * Wed May 17 2023 Andrea Scarpino <andrea@scarpino.dev> 0.3.0-1
 - Add hide/show action in cover
 - Add hide/show password button
