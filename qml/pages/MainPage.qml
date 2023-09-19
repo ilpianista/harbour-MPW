@@ -167,13 +167,13 @@ Page {
                     property bool hide: true;
 
                     id: hideButton
-                    icon.source: "image://theme/icon-splus-hide-password";
+                    icon.source: "image://theme/icon-splus-show-password";
                     width: 150
                     visible: appWindow.password.length > 0
                     anchors.verticalCenter: parent.verticalCenter
 
                     onClicked: {
-                        if (hide) {
+                        if (!hide) {
                             password.text = "********";
                             icon.source = "image://theme/icon-splus-show-password";
                         } else {
@@ -203,7 +203,7 @@ Page {
     function getPassword() {
         if (masterKey) {
             var pwd = manager.getPassword(siteUrl.text, sitePwdType.currentIndex, siteCounter.text);
-            password.text = pwd;
+            password.text = "********";
             copy.enabled = true;
             appWindow.password = pwd;
         }
