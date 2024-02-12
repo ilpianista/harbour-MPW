@@ -11,7 +11,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="65"/>
         <source>Clearing sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancello i siti web</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="79"/>
