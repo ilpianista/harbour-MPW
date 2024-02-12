@@ -6,3 +6,8 @@ Icon=harbour-mpw
 Exec=harbour-mpw
 Name=MPW
 Comment=MasterPassword client
+
+[X-Sailjail]
+Permissions=
+OrganizationName=it.andreascarpino
+ApplicationName=harbour-mpw

@@ -38,12 +38,15 @@ Page {
         onGeneratedMasterKey: {
             masterKey = true;
             password.text = "";
+            appWindow.password = "";
         }
     }
 
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
+
+        RemorsePopup { id: remorse }
 
         PullDownMenu {
 
@@ -59,24 +62,15 @@ Page {
                 enabled: sites.count > 0
 
                 onClicked: {
-                    if (masterKey) {
-                        password.text = "";
-                    }
-                    enabled = false;
+                    remorse.execute(qsTr("Clearing sites"), function() {
+                        if (masterKey) {
+                            password.text = "";
+                            appWindow.password = "";
+                        }
+                        enabled = false;
 
-                    manager.clearSites();
-                }
-            }
-
-            MenuItem {
-                id: clearPwd
-                text: qsTr("Clear password")
-                enabled: false
-
-                onClicked: {
-                    enabled = false;
-                    copy.enabled = false;
-                    password.text = "";
+                        manager.clearSites();
+                    });
                 }
             }
 
@@ -86,7 +80,7 @@ Page {
                 enabled: false
 
                 onClicked: {
-                    Clipboard.text = password.text;
+                    Clipboard.text = appWindow.password;
                 }
             }
         }
@@ -152,17 +146,46 @@ Page {
                 }
             }
 
-            Text {
-                id: password
+            Row {
                 width: parent.width
-                color: Theme.secondaryColor
-                horizontalAlignment: TextInput.AlignHCenter
-                wrapMode: Text.Wrap
-                text: qsTr("Touch here to set your master password or use the Settings page!")
+                spacing: Theme.paddingMedium
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
+                Text {
+                    id: password
+                    width: parent.width - hideButton.width
+                    color: Theme.secondaryColor
+                    horizontalAlignment: TextInput.AlignHCenter
+                    wrapMode: Text.Wrap
+                    text: qsTr("Touch here to set your master password or use the Settings page!")
+                    font.pixelSize: masterKey ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: pageStack.push(Qt.resolvedUrl("Settings.qml"))
+                        enabled: !masterKey
+                    }
+                }
+
+                IconButton {
+                    property bool hide: true;
+
+                    id: hideButton
+                    icon.source: "image://theme/icon-splus-show-password";
+                    width: 150
+                    visible: appWindow.password.length > 0
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    onClicked: {
+                        if (!hide) {
+                            password.text = "********";
+                            icon.source = "image://theme/icon-splus-show-password";
+                        } else {
+                            password.text = appWindow.password;
+                            icon.source = "image://theme/icon-splus-hide-password";
+                        }
+                        hide = !hide;
+                    }
                 }
             }
 
@@ -184,8 +207,7 @@ Page {
     function getPassword() {
         if (masterKey) {
             var pwd = manager.getPassword(siteUrl.text, sitePwdType.currentIndex, siteCounter.text);
-            password.text = pwd;
-            clearPwd.enabled = true;
+            password.text = "********";
             copy.enabled = true;
             appWindow.password = pwd;
         }

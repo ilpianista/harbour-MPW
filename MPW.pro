@@ -36,7 +36,7 @@ CONFIG += sailfishapp_i18n
 
 INCLUDEPATH += "/usr/include/mpw"
 
-LIBS += -lmpw -lsodium
+LIBS += -lmpw
 
 TRANSLATIONS += \
     translations/harbour-mpw-ar.ts \
@@ -51,3 +51,6 @@ TRANSLATIONS += \
     translations/harbour-mpw-nl.ts \
     translations/harbour-mpw-sv.ts \
     translations/harbour-mpw-tr.ts
+
+PKGCONFIG += \
+    libsodium

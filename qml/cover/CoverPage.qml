@@ -28,7 +28,30 @@ import Sailfish.Silica 1.0
 CoverBackground {
 
     CoverPlaceholder {
-        text: appWindow.password.length > 0 ? appWindow.password : "MPW"
+        id: placeholder
+        text: appWindow.password.length > 0 ? "***" : "MPW"
         icon.source: "/usr/share/icons/hicolor/86x86/apps/harbour-mpw.png"
+    }
+
+    CoverActionList {
+        id: coverAction
+        enabled: appWindow.password.length > 0
+
+        CoverAction {
+            property bool hide: true;
+
+            iconSource: "image://theme/icon-splus-show-password"
+
+            onTriggered: {
+                hide = !hide;
+                if (hide) {
+                    placeholder.text = "***";
+                    iconSource = "image://theme/icon-splus-show-password";
+                } else {
+                    placeholder.text = appWindow.password;
+                    iconSource = "image://theme/icon-splus-hide-password";
+                }
+            }
+        }
     }
 }

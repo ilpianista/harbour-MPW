@@ -25,6 +25,8 @@
 #include "mpwmanager.h"
 
 #include <QCoreApplication>
+#include <QDir>
+#include <QStandardPaths>
 #include <QDebug>
 #include <QSettings>
 #include <QThread>
@@ -38,7 +40,19 @@ MPWManager::MPWManager(QObject *parent) :
   , m_model(new SitesSqlModel(this))
   , m_key(0)
 {
-    m_settings = new QSettings(QCoreApplication::applicationName(), QCoreApplication::applicationName(), this);
+    const QString settingsPath =
+        QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
+        + QDir::separator() + QCoreApplication::applicationName() + ".conf";
+    m_settings = new QSettings(settingsPath, QSettings::NativeFormat, this);
+
+    if (!m_settings->contains("migrated")) {
+        QSettings oldSettings(QCoreApplication::applicationName(), QCoreApplication::applicationName());
+
+        for (const QString &key : oldSettings.childKeys())
+            m_settings->setValue(key, oldSettings.value(key));
+
+        m_settings->setValue("migrated", "true");
+    }
 
     m_name = m_settings->value("Name").toString();
     m_algVersion = algVersionFromInt(m_settings->value("Algorithm", 3).toUInt());
