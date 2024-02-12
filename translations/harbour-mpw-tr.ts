@@ -11,7 +11,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="65"/>
         <source>Clearing sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Siteler temizleniyor</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="79"/>
