@@ -35,7 +35,7 @@
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="159"/>
-        <source>Touch here to set your master password or use the Settings page!</source>
+        <source>Tap to set your master password or use the "Settings" page.</source>
         <translation>Puuduta seda, et määrata oma ülemparool või kasuta lehte Seaded!</translation>
     </message>
     <message>

@@ -35,7 +35,7 @@
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="159"/>
-        <source>Touch here to set your master password or use the Settings page!</source>
+        <source>Tap to set your master password or use the "Settings" page.</source>
         <translation>Druk hier om een hoofdwachtwoord in te stellen of gebruik de Instellingen-pagina!</translation>
     </message>
     <message>
