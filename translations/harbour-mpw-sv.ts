@@ -11,7 +11,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="65"/>
         <source>Clearing sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Rensar webbplatser</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="79"/>
@@ -35,8 +35,8 @@
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="159"/>
-        <source>Tap to set your master password or use the "Settings" page.</source>
-        <translation>Tryck här för att ange ditt huvudlösenord, eller använd inställningssidan!</translation>
+        <source>Tap to set your master password or use the &quot;Settings&quot; page.</source>
+        <translation>Tryck här för att ange ditt huvudlösenord, eller använd inställningssidan.</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="193"/>
