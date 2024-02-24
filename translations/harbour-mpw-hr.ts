@@ -36,7 +36,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="159"/>
         <source>Tap to set your master password or use the &quot;Settings&quot; page.</source>
-        <translation>Dodirni ovdje za postavljanje glavne lozinke ili koristi stranicu Postavke!</translation>
+        <translation>Dodirni za postavljanje glavne lozinke ili koristi stranicu „Postavke”.</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="193"/>
