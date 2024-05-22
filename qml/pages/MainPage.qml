@@ -156,7 +156,7 @@ Page {
                     color: Theme.secondaryColor
                     horizontalAlignment: TextInput.AlignHCenter
                     wrapMode: Text.Wrap
-                    text: qsTr("Tap to set your master password or use the "Settings" page.")
+                    text: qsTr("Tap to set your master password or use the \"Settings\" page")
                     font.pixelSize: masterKey ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     anchors.verticalCenter: parent.verticalCenter
 
@@ -177,14 +177,8 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
 
                     onClicked: {
-                        if (!hide) {
-                            password.text = "********";
-                            icon.source = "image://theme/icon-splus-show-password";
-                        } else {
-                            password.text = appWindow.password;
-                            icon.source = "image://theme/icon-splus-hide-password";
-                        }
-                        hide = !hide;
+                        hideButton.hide = !hideButton.hide;
+                        hidePassword();
                     }
                 }
             }
@@ -207,10 +201,19 @@ Page {
     function getPassword() {
         if (masterKey) {
             var pwd = manager.getPassword(siteUrl.text, sitePwdType.currentIndex, siteCounter.text);
-            password.text = "********";
             copy.enabled = true;
             appWindow.password = pwd;
+            hidePassword();
         }
     }
 
+    function hidePassword() {
+        if (!hideButton.hide) {
+            password.text = "********";
+            hideButton.icon.source = "image://theme/icon-splus-show-password";
+        } else {
+            password.text = appWindow.password;
+            hideButton.icon.source = "image://theme/icon-splus-hide-password";
+        }
+    }
 }

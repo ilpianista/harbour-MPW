@@ -29,17 +29,17 @@
         <translation>Teller</translation>
     </message>
     <message>
+        <location filename="../qml/pages/MainPage.qml" line="159"/>
+        <source>Tap to set your master password or use the &quot;Settings&quot; page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/MainPage.qml" line="126"/>
         <source>PIN</source>
         <translation>Pincode</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="159"/>
-        <source>Tap to set your master password or use the "Settings" page.</source>
-        <translation>Drukt hier voor een hoofdpaswoord in te stellen of gebruikt de Instellingen-pagina!</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="193"/>
+        <location filename="../qml/pages/MainPage.qml" line="187"/>
         <source>Sites</source>
         <translation>Websites</translation>
     </message>
