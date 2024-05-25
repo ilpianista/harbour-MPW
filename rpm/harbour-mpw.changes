@@ -1,3 +1,6 @@
+* Sat May 25 2024 Andrea Scarpino <andrea@scarpino.dev> 0.3.4-1
+- Fix regression: hide password by default.
+
 * Thu May 22 2024 Andrea Scarpino <andrea@scarpino.dev> 0.3.3-1
 - Remember hide/show status while switching between saved passwords.
 
