@@ -168,7 +168,7 @@ Page {
                 }
 
                 IconButton {
-                    property bool hide: true;
+                    property bool hide: false;
 
                     id: hideButton
                     icon.source: "image://theme/icon-splus-show-password";
