@@ -29,17 +29,17 @@
         <translation>Contatore</translation>
     </message>
     <message>
+        <location filename="../qml/pages/MainPage.qml" line="159"/>
+        <source>Tap to set your master password or use the &quot;Settings&quot; page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/MainPage.qml" line="126"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="159"/>
-        <source>Tap to set your master password or use the "Settings" page.</source>
-        <translation>Tocca qui per settare la master password o usa la pagina Impostazioni!</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="193"/>
+        <location filename="../qml/pages/MainPage.qml" line="187"/>
         <source>Sites</source>
         <translation>Siti</translation>
     </message>

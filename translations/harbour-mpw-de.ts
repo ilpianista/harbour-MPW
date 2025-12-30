@@ -29,17 +29,17 @@
         <translation>Zähler</translation>
     </message>
     <message>
+        <location filename="../qml/pages/MainPage.qml" line="159"/>
+        <source>Tap to set your master password or use the &quot;Settings&quot; page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/MainPage.qml" line="126"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="159"/>
-        <source>Tap to set your master password or use the "Settings" page.</source>
-        <translation>Hier tippen, um das Masterpasswort festzulegen oder in die Einstellungen zu wechseln!</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="193"/>
+        <location filename="../qml/pages/MainPage.qml" line="187"/>
         <source>Sites</source>
         <translation>Seiten</translation>
     </message>

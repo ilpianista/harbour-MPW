@@ -29,17 +29,17 @@
         <translation>Räknare</translation>
     </message>
     <message>
+        <location filename="../qml/pages/MainPage.qml" line="159"/>
+        <source>Tap to set your master password or use the &quot;Settings&quot; page</source>
+        <translation>Tryck här för att ange ditt huvudlösenord, eller använd inställningssidan</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/MainPage.qml" line="126"/>
         <source>PIN</source>
         <translation>PIN</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="159"/>
-        <source>Tap to set your master password or use the &quot;Settings&quot; page.</source>
-        <translation>Tryck här för att ange ditt huvudlösenord, eller använd inställningssidan.</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="193"/>
+        <location filename="../qml/pages/MainPage.qml" line="187"/>
         <source>Sites</source>
         <translation>Sidor</translation>
     </message>
