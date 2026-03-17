@@ -27,20 +27,19 @@
 
 #include <QSqlQueryModel>
 
-class SitesSqlModel : public QSqlQueryModel
-{
-    Q_OBJECT
+class SitesSqlModel : public QSqlQueryModel {
+  Q_OBJECT
 public:
-    explicit SitesSqlModel(QObject *parent = 0);
+  explicit SitesSqlModel(QObject *parent = 0);
 
-    void refresh();
+  void refresh();
 
-    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    virtual QHash<int,QByteArray> roleNames() const;
+  virtual QVariant data(const QModelIndex &index,
+                        int role = Qt::DisplayRole) const;
+  virtual QHash<int, QByteArray> roleNames() const;
 
 private:
-    QHash<int, QByteArray> m_roleNames;
-
+  QHash<int, QByteArray> m_roleNames;
 };
 
 #endif // SITESSQLMODEL_H

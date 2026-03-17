@@ -30,23 +30,23 @@
 
 class QSqlDatabase;
 
-class DBManager : public QObject
-{
-    Q_OBJECT
+class DBManager : public QObject {
+  Q_OBJECT
 public:
-    explicit DBManager(QObject *parent = 0);
-    virtual ~DBManager();
+  explicit DBManager(QObject *parent = 0);
+  virtual ~DBManager();
 
-    void clearSites();
-    void deleteSite(const QString &site);
-    void insert(const QString &site, MPWManager::PasswordType type, const uint counter);
+  void clearSites();
+  void deleteSite(const QString &site);
+  void insert(const QString &site, MPWManager::PasswordType type,
+              const uint counter);
 
 private:
-    void init();
-    int readDBVersion() const;
-    QString typeToString(MPWManager::PasswordType type) const;
+  void init();
+  int readDBVersion() const;
+  QString typeToString(MPWManager::PasswordType type) const;
 
-    QSqlDatabase db;
+  QSqlDatabase db;
 };
 
 #endif // DBMANAGER_H

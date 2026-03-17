@@ -24,47 +24,34 @@
 
 #include "sitessqlmodel.h"
 
-const static char* COLUMN_NAMES[] = {
-    "site",
-    "type",
-    "counter",
-    "timestamp",
-    NULL
-};
-const static QString SQL_SELECT = QStringLiteral("SELECT * FROM sites ORDER BY timestamp DESC;");
+const static char *COLUMN_NAMES[] = {"site", "type", "counter", "timestamp",
+                                     NULL};
+const static QString SQL_SELECT =
+    QStringLiteral("SELECT * FROM sites ORDER BY timestamp DESC;");
 
-SitesSqlModel::SitesSqlModel(QObject *parent):
-    QSqlQueryModel(parent)
-{
-    int idx = 0;
-    while (COLUMN_NAMES[idx]) {
-        m_roleNames[Qt::UserRole + idx + 1] = COLUMN_NAMES[idx];
-        idx++;
-    }
+SitesSqlModel::SitesSqlModel(QObject *parent) : QSqlQueryModel(parent) {
+  int idx = 0;
+  while (COLUMN_NAMES[idx]) {
+    m_roleNames[Qt::UserRole + idx + 1] = COLUMN_NAMES[idx];
+    idx++;
+  }
 
-    refresh();
+  refresh();
 }
 
-void SitesSqlModel::refresh()
-{
-    setQuery(SQL_SELECT);
+void SitesSqlModel::refresh() { setQuery(SQL_SELECT); }
+
+QVariant SitesSqlModel::data(const QModelIndex &index, int role) const {
+  QVariant value;
+  if (role < Qt::UserRole) {
+    value = QSqlQueryModel::data(index, role);
+  } else {
+    const int columnIdx = role - Qt::UserRole - 1;
+    const QModelIndex modelIndex = this->index(index.row(), columnIdx);
+    value = QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
+  }
+
+  return value;
 }
 
-QVariant SitesSqlModel::data(const QModelIndex &index, int role) const
-{
-    QVariant value;
-    if (role < Qt::UserRole) {
-        value = QSqlQueryModel::data(index, role);
-    } else {
-        const int columnIdx = role - Qt::UserRole - 1;
-        const QModelIndex modelIndex = this->index(index.row(), columnIdx);
-        value = QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
-    }
-
-    return value;
-}
-
-QHash<int, QByteArray> SitesSqlModel::roleNames() const
-{
-    return m_roleNames;
-}
+QHash<int, QByteArray> SitesSqlModel::roleNames() const { return m_roleNames; }
