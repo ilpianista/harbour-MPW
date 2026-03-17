@@ -24,17 +24,11 @@
 
 #include "sitessqlmodel.h"
 
-const static char* COLUMN_NAMES[] = {
-    "site",
-    "type",
-    "counter",
-    "timestamp",
-    NULL
-};
+const static char *COLUMN_NAMES[] = {"site", "type", "counter", "timestamp", NULL};
 const static QString SQL_SELECT = QStringLiteral("SELECT * FROM sites ORDER BY timestamp DESC;");
 
-SitesSqlModel::SitesSqlModel(QObject *parent):
-    QSqlQueryModel(parent)
+SitesSqlModel::SitesSqlModel(QObject *parent)
+    : QSqlQueryModel(parent)
 {
     int idx = 0;
     while (COLUMN_NAMES[idx]) {

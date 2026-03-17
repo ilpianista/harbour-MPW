@@ -33,7 +33,8 @@ class AsyncMasterKey : public QObject
 {
     Q_OBJECT
 public:
-    explicit AsyncMasterKey(const QString &name, const QString &password,
+    explicit AsyncMasterKey(const QString &name,
+                            const QString &password,
                             MPWManager::AlgorithmVersion version);
     virtual ~AsyncMasterKey();
 

@@ -27,8 +27,7 @@
 
 #include <QObject>
 
-extern "C"
-{
+extern "C" {
 #ifndef MPWALGORITHM_H
 #define MPWALGORITHM_H
 #include <mpw-algorithm.h>
@@ -44,14 +43,10 @@ class MPWManager : public QObject
 {
     Q_OBJECT
 public:
-    enum PasswordType {
-        Maximum, Long, Medium, Basic, Short, PIN, Name, Phrase
-    };
+    enum PasswordType { Maximum, Long, Medium, Basic, Short, PIN, Name, Phrase };
     Q_ENUMS(PasswordType)
 
-    enum AlgorithmVersion {
-        V0, V1, V2, V3
-    };
+    enum AlgorithmVersion { V0, V1, V2, V3 };
     Q_ENUMS(AlgorithmVersion)
 
     explicit MPWManager(QObject *parent = 0);
@@ -63,12 +58,16 @@ public:
     Q_INVOKABLE void setAlgorithmVersion(AlgorithmVersion version);
     Q_INVOKABLE void setName(const QString &name);
 
-    Q_INVOKABLE void generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version);
-    Q_INVOKABLE QString getPassword(const QString &site, PasswordType type, const uint counter) const;
+    Q_INVOKABLE void generateMasterKey(const QString &name,
+                                       const QString &password,
+                                       AlgorithmVersion version);
+    Q_INVOKABLE QString getPassword(const QString &site,
+                                    PasswordType type,
+                                    const uint counter) const;
 
     Q_INVOKABLE void clearSites();
     Q_INVOKABLE void deleteSite(const QString &site);
-    SitesSqlModel* recentSites();
+    SitesSqlModel *recentSites();
 
     static MPAlgorithmVersion toMPAlgorithmVersion(AlgorithmVersion version);
     static MPResultType toMPSiteType(PasswordType type);
@@ -83,7 +82,7 @@ private:
     AlgorithmVersion algVersionFromInt(const uint &version);
 
     DBManager *m_db;
-    SitesSqlModel* m_model;
+    SitesSqlModel *m_model;
     QString m_name;
     QString m_fingerprint;
     AlgorithmVersion m_algVersion;

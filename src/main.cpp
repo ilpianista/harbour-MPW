@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 
     MPWManager manager;
     view->rootContext()->setContextProperty("manager", &manager);
-    SitesSqlModel* recentSites = manager.recentSites();
+    SitesSqlModel *recentSites = manager.recentSites();
     view->rootContext()->setContextProperty("recentSites", recentSites);
 
     view->setSource(SailfishApp::pathTo("qml/MPW.qml"));

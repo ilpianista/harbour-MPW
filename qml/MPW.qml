@@ -31,7 +31,9 @@ ApplicationWindow {
 
     property string password: ""
 
-    initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
+    initialPage: Component {
+        MainPage {}
+    }
 }

@@ -26,8 +26,7 @@
 
 #include <QDebug>
 
-extern "C"
-{
+extern "C" {
 #ifndef MPWALGORITHM_H
 #define MPWALGORITHM_H
 #include <mpw-algorithm.h>
@@ -39,32 +38,33 @@ extern "C"
 #endif
 }
 
-AsyncMasterKey::AsyncMasterKey(const QString &name, const QString &password,
+AsyncMasterKey::AsyncMasterKey(const QString &name,
+                               const QString &password,
                                MPWManager::AlgorithmVersion version)
-    : m_name(name), m_password(password), m_algVersion(version)
-{
-}
+    : m_name(name)
+    , m_password(password)
+    , m_algVersion(version)
+{}
 
-AsyncMasterKey::~AsyncMasterKey()
-{
-}
+AsyncMasterKey::~AsyncMasterKey() {}
 
 void AsyncMasterKey::generate()
 {
-    const uint8_t* k = mpw_masterKey(m_name.toUtf8().data(), m_password.toUtf8().data(),
+    const uint8_t *k = mpw_masterKey(m_name.toUtf8().data(),
+                                     m_password.toUtf8().data(),
                                      MPWManager::toMPAlgorithmVersion(m_algVersion));
 
-    QByteArray* key = 0;
+    QByteArray *key = 0;
     if (k) {
-        key = new QByteArray((const char*) k, MPMasterKeySize);
+        key = new QByteArray((const char *) k, MPMasterKeySize);
     } else {
         qCritical() << "Error during master key generation.";
     }
 
     MPIdenticon fingerprint = mpw_identicon(m_name.toUtf8().data(), m_password.toUtf8().data());
 
-    Q_EMIT finished(key, QString::fromUtf8(fingerprint.leftArm)
-                    + QString::fromUtf8(fingerprint.body)
-                    + QString::fromUtf8(fingerprint.rightArm)
-                    + QString::fromUtf8(fingerprint.accessory));
+    Q_EMIT finished(key,
+                    QString::fromUtf8(fingerprint.leftArm) + QString::fromUtf8(fingerprint.body)
+                        + QString::fromUtf8(fingerprint.rightArm)
+                        + QString::fromUtf8(fingerprint.accessory));
 }

@@ -25,28 +25,29 @@
 #include "mpwmanager.h"
 
 #include <QCoreApplication>
-#include <QDir>
-#include <QStandardPaths>
 #include <QDebug>
+#include <QDir>
 #include <QSettings>
+#include <QStandardPaths>
 #include <QThread>
 
 #include "asyncmasterkey.h"
 #include "dbmanager.h"
 
-MPWManager::MPWManager(QObject *parent) :
-    QObject(parent)
-  , m_db(new DBManager(this))
-  , m_model(new SitesSqlModel(this))
-  , m_key(0)
+MPWManager::MPWManager(QObject *parent)
+    : QObject(parent)
+    , m_db(new DBManager(this))
+    , m_model(new SitesSqlModel(this))
+    , m_key(0)
 {
-    const QString settingsPath =
-        QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
-        + QDir::separator() + QCoreApplication::applicationName() + ".conf";
+    const QString settingsPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
+                                 + QDir::separator() + QCoreApplication::applicationName()
+                                 + ".conf";
     m_settings = new QSettings(settingsPath, QSettings::NativeFormat, this);
 
     if (!m_settings->contains("migrated")) {
-        QSettings oldSettings(QCoreApplication::applicationName(), QCoreApplication::applicationName());
+        QSettings oldSettings(QCoreApplication::applicationName(),
+                              QCoreApplication::applicationName());
 
         for (const QString &key : oldSettings.childKeys())
             m_settings->setValue(key, oldSettings.value(key));
@@ -95,13 +96,15 @@ void MPWManager::setName(const QString &name)
     m_settings->setValue("Name", name);
 }
 
-void MPWManager::generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version)
+void MPWManager::generateMasterKey(const QString &name,
+                                   const QString &password,
+                                   AlgorithmVersion version)
 {
     setName(name);
     setAlgorithmVersion(version);
 
-    QThread* thread = new QThread;
-    AsyncMasterKey* worker = new AsyncMasterKey(name, password, version);
+    QThread *thread = new QThread;
+    AsyncMasterKey *worker = new AsyncMasterKey(name, password, version);
     worker->moveToThread(thread);
     connect(thread, &QThread::started, worker, &AsyncMasterKey::generate);
     connect(worker, &AsyncMasterKey::finished, this, &MPWManager::gotMasterKey);
@@ -122,9 +125,14 @@ void MPWManager::gotMasterKey(QByteArray *key, const QString &fingerprint)
 
 QString MPWManager::getPassword(const QString &site, PasswordType type, const uint counter) const
 {
-    const char* p = mpw_siteResult((const unsigned char*) m_key->data(), site.toUtf8().data(),
-                                   counter, MPKeyPurposeAuthentication, NULL, toMPSiteType(type),
-                                   NULL, toMPAlgorithmVersion(m_algVersion));
+    const char *p = mpw_siteResult((const unsigned char *) m_key->data(),
+                                   site.toUtf8().data(),
+                                   counter,
+                                   MPKeyPurposeAuthentication,
+                                   NULL,
+                                   toMPSiteType(type),
+                                   NULL,
+                                   toMPAlgorithmVersion(m_algVersion));
 
     if (p) {
         m_db->insert(site, type, counter);
@@ -140,11 +148,20 @@ MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version)
 {
     MPAlgorithmVersion v = MPAlgorithmVersionCurrent;
     switch (version) {
-        case V0: v = MPAlgorithmVersion0; break;
-        case V1: v = MPAlgorithmVersion1; break;
-        case V2: v = MPAlgorithmVersion2; break;
-        case V3: v = MPAlgorithmVersion3; break;
-        default: qCritical() << "Unrecognized algorithm version:" << version;
+    case V0:
+        v = MPAlgorithmVersion0;
+        break;
+    case V1:
+        v = MPAlgorithmVersion1;
+        break;
+    case V2:
+        v = MPAlgorithmVersion2;
+        break;
+    case V3:
+        v = MPAlgorithmVersion3;
+        break;
+    default:
+        qCritical() << "Unrecognized algorithm version:" << version;
     }
 
     return v;
@@ -154,15 +171,32 @@ MPResultType MPWManager::toMPSiteType(PasswordType type)
 {
     MPResultType t = MPResultTypeTemplateLong;
     switch (type) {
-        case Maximum: t = MPResultTypeTemplateMaximum; break;
-        case Long: t = MPResultTypeTemplateLong; break;
-        case Medium: t = MPResultTypeTemplateMedium; break;
-        case Basic: t = MPResultTypeTemplateBasic; break;
-        case Short: t = MPResultTypeTemplateShort; break;
-        case PIN: t = MPResultTypeTemplatePIN; break;
-        case Name: t = MPResultTypeTemplateName; break;
-        case Phrase: t = MPResultTypeTemplatePhrase; break;
-        default: qCritical() << "Unrecognized password type:" << type;
+    case Maximum:
+        t = MPResultTypeTemplateMaximum;
+        break;
+    case Long:
+        t = MPResultTypeTemplateLong;
+        break;
+    case Medium:
+        t = MPResultTypeTemplateMedium;
+        break;
+    case Basic:
+        t = MPResultTypeTemplateBasic;
+        break;
+    case Short:
+        t = MPResultTypeTemplateShort;
+        break;
+    case PIN:
+        t = MPResultTypeTemplatePIN;
+        break;
+    case Name:
+        t = MPResultTypeTemplateName;
+        break;
+    case Phrase:
+        t = MPResultTypeTemplatePhrase;
+        break;
+    default:
+        qCritical() << "Unrecognized password type:" << type;
     }
 
     return t;
@@ -182,7 +216,7 @@ void MPWManager::deleteSite(const QString &site)
 
 SitesSqlModel *MPWManager::recentSites()
 {
-    //m_model = new SitesSqlModel(this);
+    // m_model = new SitesSqlModel(this);
 
     return m_model;
 }
