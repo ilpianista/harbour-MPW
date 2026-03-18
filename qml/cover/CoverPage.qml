@@ -26,22 +26,22 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
-
     CoverPlaceholder {
         id: placeholder
+
         text: appWindow.password.length > 0 ? "***" : "MPW"
         icon.source: "/usr/share/icons/hicolor/86x86/apps/harbour-mpw.png"
     }
 
     CoverActionList {
         id: coverAction
+
         enabled: appWindow.password.length > 0
 
         CoverAction {
-            property bool hide: true;
+            property bool hide: true
 
             iconSource: "image://theme/icon-splus-show-password"
-
             onTriggered: {
                 hide = !hide;
                 if (hide) {

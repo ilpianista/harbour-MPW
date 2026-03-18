@@ -27,7 +27,39 @@ import Sailfish.Silica 1.0
 
 ListItem {
     id: item
+
+    function typeIndexFromString(type) {
+        if (type === "Maximum")
+            return 0;
+        else if (type === "Long")
+            return 1;
+        else if (type === "Medium")
+            return 2;
+        else if (type === "Basic")
+            return 3;
+        else if (type === "Short")
+            return 4;
+        else if (type === "PIN")
+            return 5;
+        else if (type === "Name")
+            return 6;
+        else if (type === "Phrase")
+            return 7;
+    }
+
+    function deleteSite(site) {
+        remorseAction(qsTr("Deleting"), function () {
+            manager.deleteSite(site);
+        }, 3000);
+    }
+
     menu: itemMenu
+    onClicked: {
+        siteUrl.text = site;
+        sitePwdType.currentIndex = typeIndexFromString(type);
+        siteCounter.text = counter;
+        getPassword();
+    }
 
     Label {
         x: Theme.horizontalPageMargin
@@ -44,36 +76,4 @@ ListItem {
             onClicked: deleteSite(site)
         }
     }
-
-    onClicked: {
-        siteUrl.text = site;
-        sitePwdType.currentIndex = typeIndexFromString(type);
-        siteCounter.text = counter;
-        getPassword();
-    }
-
-    function typeIndexFromString(type) {
-        if (type === "Maximum") {
-            return 0;
-        } else if (type === "Long") {
-            return 1;
-        } else if (type === "Medium") {
-            return 2;
-        } else if (type === "Basic") {
-            return 3;
-        } else if (type === "Short") {
-            return 4;
-        } else if (type === "PIN") {
-            return 5;
-        } else if (type === "Name") {
-            return 6;
-        } else if (type === "Phrase") {
-            return 7;
-        }
-    }
-
-    function deleteSite(site) {
-        remorseAction(qsTr("Deleting"), function() { manager.deleteSite(site) }, 3000);
-    }
-
 }

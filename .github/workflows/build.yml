@@ -17,75 +17,40 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        arch: ['armv7hl', 'aarch64', 'i486']
+
     steps:
     - uses: actions/checkout@v5
       with:
         submodules: recursive
 
     - name: Prepare
-      run: mkdir RPMS
+      run: docker pull coderus/sailfishos-platform-sdk:$RELEASE && mkdir RPMS
 
-    - name: Build armv7hl
-      id: build_armv7hl
+    - name: Build ${{ matrix.arch }}
       run: docker run --rm --privileged -v $PWD:/workspace coderus/sailfishos-platform-sdk:$RELEASE /bin/bash -c "
             mkdir -p build ;
             cd build ;
             cp -r /workspace/* . ;
             cd libsodium ;
-            mb2 -t SailfishOS-$RELEASE-armv7hl build ;
-            sb2 -t SailfishOS-$RELEASE-armv7hl -R zypper -p RPMS in -y libsodium{,-devel} ;
+            mb2 -t SailfishOS-$RELEASE-${{ matrix.arch }} build ;
+            sb2 -t SailfishOS-$RELEASE-${{ matrix.arch }} -R zypper -p RPMS in -y libsodium{,-devel} ;
             cd ../libmpw ;
             curl -o mpw-2.6-cli-5-0-g344771db.tar.gz https://gitlab.com/MasterPassword/MasterPassword/-/raw/2f96072e3e42887dfe923924451fe73d77db5d0e/mpw-2.6-cli-5-0-g344771db.tar.gz ;
             tar xfz mpw-2.6-cli-5-0-g344771db.tar.gz ;
-            mb2 -t SailfishOS-$RELEASE-armv7hl build --prepare ;
-            sb2 -t SailfishOS-$RELEASE-armv7hl -R zypper -p RPMS in -y libmpw{,-devel} ;
+            mb2 -t SailfishOS-$RELEASE-${{ matrix.arch }} build --prepare ;
+            sb2 -t SailfishOS-$RELEASE-${{ matrix.arch }} -R zypper -p RPMS in -y libmpw{,-devel} ;
             cd .. ;
-            mb2 -t SailfishOS-$RELEASE-armv7hl build ;
+            mb2 -t SailfishOS-$RELEASE-${{ matrix.arch }} build ;
             sudo mkdir -p /workspace/RPMS ;
             sudo cp -r RPMS/*.rpm /workspace/RPMS"
 
-    - name: Build i486
-      id: build_i486
-      run: docker run --rm --privileged -v $PWD:/workspace coderus/sailfishos-platform-sdk:$RELEASE /bin/bash -c "
-            mkdir -p build ;
-            cd build ;
-            cp -r /workspace/* . ;
-            cd libsodium ;
-            mb2 -t SailfishOS-$RELEASE-i486 build ;
-            sb2 -t SailfishOS-$RELEASE-i486 -R zypper -p RPMS in -y libsodium{,-devel} ;
-            cd ../libmpw ;
-            curl -o mpw-2.6-cli-5-0-g344771db.tar.gz https://gitlab.com/MasterPassword/MasterPassword/-/raw/2f96072e3e42887dfe923924451fe73d77db5d0e/mpw-2.6-cli-5-0-g344771db.tar.gz ;
-            tar xfz mpw-2.6-cli-5-0-g344771db.tar.gz ;
-            mb2 -t SailfishOS-$RELEASE-i486 build --prepare ;
-            sb2 -t SailfishOS-$RELEASE-i486 -R zypper -p RPMS in -y libmpw{,-devel} ;
-            cd .. ;
-            mb2 -t SailfishOS-$RELEASE-i486 build ;
-            sudo mkdir -p /workspace/RPMS ;
-            sudo cp -r RPMS/*.rpm /workspace/RPMS"
-
-    - name: Build aarch64
-      id: build_aarch64
-      run: docker run --rm --privileged -v $PWD:/workspace coderus/sailfishos-platform-sdk:$RELEASE /bin/bash -c "
-            mkdir -p build ;
-            cd build ;
-            cp -r /workspace/* . ;
-            cd libsodium ;
-            mb2 -t SailfishOS-$RELEASE-aarch64 build ;
-            sb2 -t SailfishOS-$RELEASE-aarch64 -R zypper -p RPMS in -y libsodium{,-devel} ;
-            cd ../libmpw ;
-            curl -o mpw-2.6-cli-5-0-g344771db.tar.gz https://gitlab.com/MasterPassword/MasterPassword/-/raw/2f96072e3e42887dfe923924451fe73d77db5d0e/mpw-2.6-cli-5-0-g344771db.tar.gz ;
-            tar xfz mpw-2.6-cli-5-0-g344771db.tar.gz ;
-            mb2 -t SailfishOS-$RELEASE-aarch64 build --prepare ;
-            sb2 -t SailfishOS-$RELEASE-aarch64 -R zypper -p RPMS in -y libmpw{,-devel} ;
-            cd .. ;
-            mb2 -t SailfishOS-$RELEASE-aarch64 build ;
-            sudo mkdir -p /workspace/RPMS ;
-            sudo cp -r RPMS/*.rpm /workspace/RPMS"
-
-    - name: Upload build result
+    - name: Upload build result (${{ matrix.arch }})
       uses: actions/upload-artifact@v5
       with:
-        name: rpms
+        name: rpms-${{ matrix.arch }}
         path: RPMS
 
     - name: Create release

@@ -27,8 +27,7 @@
 
 #include <QObject>
 
-extern "C"
-{
+extern "C" {
 #ifndef MPWALGORITHM_H
 #define MPWALGORITHM_H
 #include <mpw-algorithm.h>
@@ -40,55 +39,53 @@ extern "C"
 class QSettings;
 class DBManager;
 
-class MPWManager : public QObject
-{
-    Q_OBJECT
+class MPWManager : public QObject {
+  Q_OBJECT
 public:
-    enum PasswordType {
-        Maximum, Long, Medium, Basic, Short, PIN, Name, Phrase
-    };
-    Q_ENUMS(PasswordType)
+  enum PasswordType { Maximum, Long, Medium, Basic, Short, PIN, Name, Phrase };
+  Q_ENUMS(PasswordType)
 
-    enum AlgorithmVersion {
-        V0, V1, V2, V3
-    };
-    Q_ENUMS(AlgorithmVersion)
+  enum AlgorithmVersion { V0, V1, V2, V3 };
+  Q_ENUMS(AlgorithmVersion)
 
-    explicit MPWManager(QObject *parent = 0);
-    virtual ~MPWManager();
+  explicit MPWManager(QObject *parent = 0);
+  virtual ~MPWManager();
 
-    Q_INVOKABLE AlgorithmVersion getAlgorithmVersion() const;
-    Q_INVOKABLE QString getName() const;
-    Q_INVOKABLE QString getFingerprint() const;
-    Q_INVOKABLE void setAlgorithmVersion(AlgorithmVersion version);
-    Q_INVOKABLE void setName(const QString &name);
+  Q_INVOKABLE AlgorithmVersion getAlgorithmVersion() const;
+  Q_INVOKABLE QString getName() const;
+  Q_INVOKABLE QString getFingerprint() const;
+  Q_INVOKABLE void setAlgorithmVersion(AlgorithmVersion version);
+  Q_INVOKABLE void setName(const QString &name);
 
-    Q_INVOKABLE void generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version);
-    Q_INVOKABLE QString getPassword(const QString &site, PasswordType type, const uint counter) const;
+  Q_INVOKABLE void generateMasterKey(const QString &name,
+                                     const QString &password,
+                                     AlgorithmVersion version);
+  Q_INVOKABLE QString getPassword(const QString &site, PasswordType type,
+                                  const uint counter) const;
 
-    Q_INVOKABLE void clearSites();
-    Q_INVOKABLE void deleteSite(const QString &site);
-    SitesSqlModel* recentSites();
+  Q_INVOKABLE void clearSites();
+  Q_INVOKABLE void deleteSite(const QString &site);
+  SitesSqlModel *recentSites();
 
-    static MPAlgorithmVersion toMPAlgorithmVersion(AlgorithmVersion version);
-    static MPResultType toMPSiteType(PasswordType type);
+  static MPAlgorithmVersion toMPAlgorithmVersion(AlgorithmVersion version);
+  static MPResultType toMPSiteType(PasswordType type);
 
 Q_SIGNALS:
-    void generatedMasterKey(const QString &fingerprint);
+  void generatedMasterKey(const QString &fingerprint);
 
 protected Q_SLOTS:
-    void gotMasterKey(QByteArray *key, const QString &fingerprint);
+  void gotMasterKey(QByteArray *key, const QString &fingerprint);
 
 private:
-    AlgorithmVersion algVersionFromInt(const uint &version);
+  AlgorithmVersion algVersionFromInt(const uint &version);
 
-    DBManager *m_db;
-    SitesSqlModel* m_model;
-    QString m_name;
-    QString m_fingerprint;
-    AlgorithmVersion m_algVersion;
-    QByteArray *m_key;
-    QSettings *m_settings;
+  DBManager *m_db;
+  SitesSqlModel *m_model;
+  QString m_name;
+  QString m_fingerprint;
+  AlgorithmVersion m_algVersion;
+  QByteArray *m_key;
+  QSettings *m_settings;
 };
 
 #endif // MPWMANAGER_H

@@ -29,24 +29,23 @@
 
 #include "mpwmanager.h"
 
-class AsyncMasterKey : public QObject
-{
-    Q_OBJECT
+class AsyncMasterKey : public QObject {
+  Q_OBJECT
 public:
-    explicit AsyncMasterKey(const QString &name, const QString &password,
-                            MPWManager::AlgorithmVersion version);
-    virtual ~AsyncMasterKey();
+  explicit AsyncMasterKey(const QString &name, const QString &password,
+                          MPWManager::AlgorithmVersion version);
+  virtual ~AsyncMasterKey();
 
 Q_SIGNALS:
-    void finished(QByteArray *key, const QString &fingerprint);
+  void finished(QByteArray *key, const QString &fingerprint);
 
 public Q_SLOTS:
-    void generate();
+  void generate();
 
 private:
-    QString m_name;
-    QString m_password;
-    MPWManager::AlgorithmVersion m_algVersion;
+  QString m_name;
+  QString m_password;
+  MPWManager::AlgorithmVersion m_algVersion;
 };
 
 #endif // ASYNCMASTERKEY_H

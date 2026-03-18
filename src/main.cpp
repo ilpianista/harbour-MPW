@@ -29,23 +29,22 @@
 #include "mpwmanager.h"
 #include "sitessqlmodel.h"
 
-int main(int argc, char *argv[])
-{
-    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
-    QScopedPointer<QQuickView> view(SailfishApp::createView());
+int main(int argc, char *argv[]) {
+  QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+  QScopedPointer<QQuickView> view(SailfishApp::createView());
 
-    QCoreApplication::setApplicationName(QStringLiteral("harbour-mpw"));
-    QCoreApplication::setOrganizationName(QStringLiteral("it.andreascarpino"));
+  QCoreApplication::setApplicationName(QStringLiteral("harbour-mpw"));
+  QCoreApplication::setOrganizationName(QStringLiteral("it.andreascarpino"));
 
-    qmlRegisterType<MPWManager>("harbour.mpw", 1, 0, "MPWManager");
+  qmlRegisterType<MPWManager>("harbour.mpw", 1, 0, "MPWManager");
 
-    MPWManager manager;
-    view->rootContext()->setContextProperty("manager", &manager);
-    SitesSqlModel* recentSites = manager.recentSites();
-    view->rootContext()->setContextProperty("recentSites", recentSites);
+  MPWManager manager;
+  view->rootContext()->setContextProperty("manager", &manager);
+  SitesSqlModel *recentSites = manager.recentSites();
+  view->rootContext()->setContextProperty("recentSites", recentSites);
 
-    view->setSource(SailfishApp::pathTo("qml/MPW.qml"));
-    view->show();
+  view->setSource(SailfishApp::pathTo("qml/MPW.qml"));
+  view->show();
 
-    return app->exec();
+  return app->exec();
 }

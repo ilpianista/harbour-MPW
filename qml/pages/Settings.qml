@@ -29,10 +29,15 @@ Page {
     id: page
 
     allowedOrientations: Orientation.All
+    Component.onCompleted: {
+        name.text = manager.getName();
+        fprint.text = manager.getFingerprint();
+        if (name.text.length > 0)
+            password.forceActiveFocus();
+    }
 
     Connections {
         target: manager
-
         onGeneratedMasterKey: {
             fprint.text = fingerprint;
             busy.visible = busy.running = false;
@@ -51,53 +56,67 @@ Page {
 
         TextField {
             id: name
+
             width: parent.width
             text: manager.getName
             placeholderText: qsTr("Full name")
-
             onTextChanged: save.enabled = (text.length > 0 && password.text.length > 0)
         }
 
         TextField {
             id: password
+
             width: parent.width
             placeholderText: qsTr("Master password")
             echoMode: TextInput.Password
-
             onTextChanged: save.enabled = (text.length > 0 && name.text.length > 0)
         }
 
         ComboBox {
             id: version
+
             label: qsTr("Algorithm version")
             currentIndex: manager.getAlgorithmVersion()
             width: page.width
 
             menu: ContextMenu {
-                MenuItem { text: "V0" }
-                MenuItem { text: "V1" }
-                MenuItem { text: "V2" }
-                MenuItem { text: "V3" }
+                MenuItem {
+                    text: "V0"
+                }
+
+                MenuItem {
+                    text: "V1"
+                }
+
+                MenuItem {
+                    text: "V2"
+                }
+
+                MenuItem {
+                    text: "V3"
+                }
             }
         }
 
         BusyIndicator {
             id: busy
+
             visible: false
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Label {
             id: fprint
+
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Button {
             id: save
-            text: qsTr("Generate");
+
+            text: qsTr("Generate")
             anchors.horizontalCenter: parent.horizontalCenter
             enabled: false
-
             onClicked: {
                 enabled = name.enabled = password.enabled = version.enabled = false;
                 busy.visible = busy.running = true;
@@ -105,15 +124,5 @@ Page {
                 manager.generateMasterKey(name.text.trim(), password.text.trim(), version.currentIndex);
             }
         }
-    }
-
-    Component.onCompleted: {
-        name.text = manager.getName();
-        fprint.text = manager.getFingerprint();
-
-        if (name.text.length > 0) {
-            password.forceActiveFocus();
-        }
-
     }
 }

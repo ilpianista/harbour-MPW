@@ -25,177 +25,187 @@
 #include "mpwmanager.h"
 
 #include <QCoreApplication>
-#include <QDir>
-#include <QStandardPaths>
 #include <QDebug>
+#include <QDir>
 #include <QSettings>
+#include <QStandardPaths>
 #include <QThread>
 
 #include "asyncmasterkey.h"
 #include "dbmanager.h"
 
-MPWManager::MPWManager(QObject *parent) :
-    QObject(parent)
-  , m_db(new DBManager(this))
-  , m_model(new SitesSqlModel(this))
-  , m_key(0)
-{
-    const QString settingsPath =
-        QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
-        + QDir::separator() + QCoreApplication::applicationName() + ".conf";
-    m_settings = new QSettings(settingsPath, QSettings::NativeFormat, this);
+MPWManager::MPWManager(QObject *parent)
+    : QObject(parent), m_db(new DBManager(this)),
+      m_model(new SitesSqlModel(this)), m_key(0) {
+  const QString settingsPath =
+      QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) +
+      QDir::separator() + QCoreApplication::applicationName() + ".conf";
+  m_settings = new QSettings(settingsPath, QSettings::NativeFormat, this);
 
-    if (!m_settings->contains("migrated")) {
-        QSettings oldSettings(QCoreApplication::applicationName(), QCoreApplication::applicationName());
+  if (!m_settings->contains("migrated")) {
+    QSettings oldSettings(QCoreApplication::applicationName(),
+                          QCoreApplication::applicationName());
 
-        for (const QString &key : oldSettings.childKeys())
-            m_settings->setValue(key, oldSettings.value(key));
+    for (const QString &key : oldSettings.childKeys())
+      m_settings->setValue(key, oldSettings.value(key));
 
-        m_settings->setValue("migrated", "true");
-    }
+    m_settings->setValue("migrated", "true");
+  }
 
-    m_name = m_settings->value("Name").toString();
-    m_algVersion = algVersionFromInt(m_settings->value("Algorithm", 3).toUInt());
+  m_name = m_settings->value("Name").toString();
+  m_algVersion = algVersionFromInt(m_settings->value("Algorithm", 3).toUInt());
 }
 
-MPWManager::~MPWManager()
-{
-    delete m_db;
-    delete m_model;
-    delete m_key;
-    delete m_settings;
+MPWManager::~MPWManager() {
+  delete m_db;
+  delete m_model;
+  delete m_key;
+  delete m_settings;
 }
 
-MPWManager::AlgorithmVersion MPWManager::getAlgorithmVersion() const
-{
-    return m_algVersion;
+MPWManager::AlgorithmVersion MPWManager::getAlgorithmVersion() const {
+  return m_algVersion;
 }
 
-QString MPWManager::getName() const
-{
-    return m_name;
+QString MPWManager::getName() const { return m_name; }
+
+QString MPWManager::getFingerprint() const { return m_fingerprint; }
+
+void MPWManager::setAlgorithmVersion(AlgorithmVersion version) {
+  qDebug() << "Using algorithm version:" << version;
+
+  m_algVersion = version;
+  m_settings->setValue("Algorithm", version);
 }
 
-QString MPWManager::getFingerprint() const
-{
-    return m_fingerprint;
+void MPWManager::setName(const QString &name) {
+  m_name = name;
+  m_settings->setValue("Name", name);
 }
 
-void MPWManager::setAlgorithmVersion(AlgorithmVersion version)
-{
-    qDebug() << "Using algorithm version:" << version;
+void MPWManager::generateMasterKey(const QString &name, const QString &password,
+                                   AlgorithmVersion version) {
+  setName(name);
+  setAlgorithmVersion(version);
 
-    m_algVersion = version;
-    m_settings->setValue("Algorithm", version);
+  QThread *thread = new QThread;
+  AsyncMasterKey *worker = new AsyncMasterKey(name, password, version);
+  worker->moveToThread(thread);
+  connect(thread, &QThread::started, worker, &AsyncMasterKey::generate);
+  connect(worker, &AsyncMasterKey::finished, this, &MPWManager::gotMasterKey);
+  connect(worker, &AsyncMasterKey::finished, thread, &QThread::quit);
+  connect(worker, &AsyncMasterKey::finished, worker,
+          &AsyncMasterKey::deleteLater);
+  connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+  thread->start();
 }
 
-void MPWManager::setName(const QString &name)
-{
-    m_name = name;
-    m_settings->setValue("Name", name);
+void MPWManager::gotMasterKey(QByteArray *key, const QString &fingerprint) {
+  qDebug() << "Storing master key";
+  m_key = key;
+
+  m_fingerprint = fingerprint;
+  Q_EMIT generatedMasterKey(fingerprint);
 }
 
-void MPWManager::generateMasterKey(const QString &name, const QString &password, AlgorithmVersion version)
-{
-    setName(name);
-    setAlgorithmVersion(version);
+QString MPWManager::getPassword(const QString &site, PasswordType type,
+                                const uint counter) const {
+  const char *p = mpw_siteResult(
+      (const unsigned char *)m_key->data(), site.toUtf8().data(), counter,
+      MPKeyPurposeAuthentication, NULL, toMPSiteType(type), NULL,
+      toMPAlgorithmVersion(m_algVersion));
 
-    QThread* thread = new QThread;
-    AsyncMasterKey* worker = new AsyncMasterKey(name, password, version);
-    worker->moveToThread(thread);
-    connect(thread, &QThread::started, worker, &AsyncMasterKey::generate);
-    connect(worker, &AsyncMasterKey::finished, this, &MPWManager::gotMasterKey);
-    connect(worker, &AsyncMasterKey::finished, thread, &QThread::quit);
-    connect(worker, &AsyncMasterKey::finished, worker, &AsyncMasterKey::deleteLater);
-    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
-    thread->start();
-}
-
-void MPWManager::gotMasterKey(QByteArray *key, const QString &fingerprint)
-{
-    qDebug() << "Storing master key";
-    m_key = key;
-
-    m_fingerprint = fingerprint;
-    Q_EMIT generatedMasterKey(fingerprint);
-}
-
-QString MPWManager::getPassword(const QString &site, PasswordType type, const uint counter) const
-{
-    const char* p = mpw_siteResult((const unsigned char*) m_key->data(), site.toUtf8().data(),
-                                   counter, MPKeyPurposeAuthentication, NULL, toMPSiteType(type),
-                                   NULL, toMPAlgorithmVersion(m_algVersion));
-
-    if (p) {
-        m_db->insert(site, type, counter);
-        m_model->refresh();
-        return QString::fromUtf8(p);
-    } else {
-        qCritical() << "Error during password generation";
-        return QString();
-    }
-}
-
-MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version)
-{
-    MPAlgorithmVersion v = MPAlgorithmVersionCurrent;
-    switch (version) {
-        case V0: v = MPAlgorithmVersion0; break;
-        case V1: v = MPAlgorithmVersion1; break;
-        case V2: v = MPAlgorithmVersion2; break;
-        case V3: v = MPAlgorithmVersion3; break;
-        default: qCritical() << "Unrecognized algorithm version:" << version;
-    }
-
-    return v;
-}
-
-MPResultType MPWManager::toMPSiteType(PasswordType type)
-{
-    MPResultType t = MPResultTypeTemplateLong;
-    switch (type) {
-        case Maximum: t = MPResultTypeTemplateMaximum; break;
-        case Long: t = MPResultTypeTemplateLong; break;
-        case Medium: t = MPResultTypeTemplateMedium; break;
-        case Basic: t = MPResultTypeTemplateBasic; break;
-        case Short: t = MPResultTypeTemplateShort; break;
-        case PIN: t = MPResultTypeTemplatePIN; break;
-        case Name: t = MPResultTypeTemplateName; break;
-        case Phrase: t = MPResultTypeTemplatePhrase; break;
-        default: qCritical() << "Unrecognized password type:" << type;
-    }
-
-    return t;
-}
-
-void MPWManager::clearSites()
-{
-    m_db->clearSites();
+  if (p) {
+    m_db->insert(site, type, counter);
     m_model->refresh();
+    return QString::fromUtf8(p);
+  } else {
+    qCritical() << "Error during password generation";
+    return QString();
+  }
 }
 
-void MPWManager::deleteSite(const QString &site)
-{
-    m_db->deleteSite(site);
-    m_model->refresh();
+MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version) {
+  MPAlgorithmVersion v = MPAlgorithmVersionCurrent;
+  switch (version) {
+  case V0:
+    v = MPAlgorithmVersion0;
+    break;
+  case V1:
+    v = MPAlgorithmVersion1;
+    break;
+  case V2:
+    v = MPAlgorithmVersion2;
+    break;
+  case V3:
+    v = MPAlgorithmVersion3;
+    break;
+  default:
+    qCritical() << "Unrecognized algorithm version:" << version;
+  }
+
+  return v;
 }
 
-SitesSqlModel *MPWManager::recentSites()
-{
-    //m_model = new SitesSqlModel(this);
+MPResultType MPWManager::toMPSiteType(PasswordType type) {
+  MPResultType t = MPResultTypeTemplateLong;
+  switch (type) {
+  case Maximum:
+    t = MPResultTypeTemplateMaximum;
+    break;
+  case Long:
+    t = MPResultTypeTemplateLong;
+    break;
+  case Medium:
+    t = MPResultTypeTemplateMedium;
+    break;
+  case Basic:
+    t = MPResultTypeTemplateBasic;
+    break;
+  case Short:
+    t = MPResultTypeTemplateShort;
+    break;
+  case PIN:
+    t = MPResultTypeTemplatePIN;
+    break;
+  case Name:
+    t = MPResultTypeTemplateName;
+    break;
+  case Phrase:
+    t = MPResultTypeTemplatePhrase;
+    break;
+  default:
+    qCritical() << "Unrecognized password type:" << type;
+  }
 
-    return m_model;
+  return t;
 }
 
-MPWManager::AlgorithmVersion MPWManager::algVersionFromInt(const uint &version)
-{
-    if (version == 0) {
-        return V0;
-    } else if (version == 1) {
-        return V1;
-    } else if (version == 2) {
-        return V2;
-    } else {
-        return V3;
-    }
+void MPWManager::clearSites() {
+  m_db->clearSites();
+  m_model->refresh();
+}
+
+void MPWManager::deleteSite(const QString &site) {
+  m_db->deleteSite(site);
+  m_model->refresh();
+}
+
+SitesSqlModel *MPWManager::recentSites() {
+  // m_model = new SitesSqlModel(this);
+
+  return m_model;
+}
+
+MPWManager::AlgorithmVersion
+MPWManager::algVersionFromInt(const uint &version) {
+  if (version == 0) {
+    return V0;
+  } else if (version == 1) {
+    return V1;
+  } else if (version == 2) {
+    return V2;
+  } else {
+    return V3;
+  }
 }
