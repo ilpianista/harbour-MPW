@@ -31,7 +31,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="159"/>
         <source>Tap to set your master password or use the &quot;Settings&quot; page</source>
-        <translation type="unfinished"></translation>
+        <translation>Ana parolanızı belirlemek için dokunun veya &quot;Ayarlar&quot; sayfasını kullanın</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="126"/>
