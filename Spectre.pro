@@ -92,6 +92,7 @@ libspectre_so.commands = \
     CFLAGS=\"-fPIC -I$$LIBSODIUM_STAGE/usr/include\" \
     LDFLAGS=\"-L$$LIBSODIUM_STAGE/usr/lib\" \
     gcc -std=c11 -O3 -fPIC -I\"$$LIBSODIUM_STAGE/usr/include\" -DSPECTRE_SODIUM=1 -Ic -L\"$$LIBSODIUM_STAGE/usr/lib\" -lsodium -shared -o \"$$LIBSPECTRE_STAGE/libspectre.so\" c/aes.c c/spectre-algorithm.c c/spectre-algorithm_v0.c c/spectre-algorithm_v1.c c/spectre-algorithm_v2.c c/spectre-algorithm_v3.c c/spectre-types.c c/spectre-util.c c/spectre-marshal-util.c c/spectre-marshal.c
+libspectre_so.depends = $$libsodium_so.target
 
 LIBS += -L$$LIBSPECTRE_STAGE -lspectre
 LIBS += -L$$LIBSODIUM_STAGE/usr/lib -lsodium
