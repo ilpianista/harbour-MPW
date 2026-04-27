@@ -127,7 +127,7 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="51"/>
         <source>Deleting</source>
-        <translation>Löschen …</translation>
+        <translation>Löschen</translation>
     </message>
 </context>
 </TS>
