@@ -21,7 +21,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="119"/>
         <source>Site name (e.g. google.com)</source>
-        <translation>Nom du site (par ex.&#x202f;: wikipedia.org)</translation>
+        <translation>Nom du site (par ex.&#xa0;: wikipedia.org)</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="183"/>
