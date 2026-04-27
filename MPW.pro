@@ -29,7 +29,6 @@ OTHER_FILES += \
     harbour-mpw.png \
     rpm/harbour-mpw.changes \
     rpm/harbour-mpw.spec \
-    rpm/harbour-mpw.yaml \
     translations/*.ts
 
 CONFIG += sailfishapp_i18n
