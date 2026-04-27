@@ -27,14 +27,8 @@
 
 #include <QObject>
 
-extern "C" {
-#ifndef MPWALGORITHM_H
-#define MPWALGORITHM_H
-#include <mpw-algorithm.h>
-#endif
-}
-
 #include "sitessqlmodel.h"
+#include "spectre_wrapper.h"
 
 class QSettings;
 class DBManager;
@@ -69,8 +63,8 @@ public:
     Q_INVOKABLE void deleteSite(const QString &site);
     SitesSqlModel *recentSites();
 
-    static MPAlgorithmVersion toMPAlgorithmVersion(AlgorithmVersion version);
-    static MPResultType toMPSiteType(PasswordType type);
+    static unsigned int toMPAlgorithmVersion(AlgorithmVersion version);
+    static uint32_t toMPSiteType(PasswordType type);
 
 Q_SIGNALS:
     void generatedMasterKey(const QString &fingerprint);

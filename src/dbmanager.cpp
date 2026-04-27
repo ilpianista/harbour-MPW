@@ -31,7 +31,7 @@
 #include <QSqlRecord>
 #include <QStandardPaths>
 
-const static QString DB_NAME = QStringLiteral("mpw");
+const static QString DB_NAME = QStringLiteral("spectre");
 const static int DB_VERSION = 1;
 
 const static QString CLEAR_SITES = QStringLiteral("DELETE FROM sites;");

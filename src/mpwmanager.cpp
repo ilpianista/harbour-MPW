@@ -45,16 +45,6 @@ MPWManager::MPWManager(QObject *parent)
                                  + ".conf";
     m_settings = new QSettings(settingsPath, QSettings::NativeFormat, this);
 
-    if (!m_settings->contains("migrated")) {
-        QSettings oldSettings(QCoreApplication::applicationName(),
-                              QCoreApplication::applicationName());
-
-        for (const QString &key : oldSettings.childKeys())
-            m_settings->setValue(key, oldSettings.value(key));
-
-        m_settings->setValue("migrated", "true");
-    }
-
     m_name = m_settings->value("Name").toString();
     m_algVersion = algVersionFromInt(m_settings->value("Algorithm", 3).toUInt());
 }
@@ -84,8 +74,6 @@ QString MPWManager::getFingerprint() const
 
 void MPWManager::setAlgorithmVersion(AlgorithmVersion version)
 {
-    qDebug() << "Using algorithm version:" << version;
-
     m_algVersion = version;
     m_settings->setValue("Algorithm", version);
 }
@@ -125,14 +113,13 @@ void MPWManager::gotMasterKey(QByteArray *key, const QString &fingerprint)
 
 QString MPWManager::getPassword(const QString &site, PasswordType type, const uint counter) const
 {
-    const char *p = mpw_siteResult((const unsigned char *) m_key->data(),
+    const char *p = sw_site_result((const uint8_t *) m_key->data(),
                                    site.toUtf8().data(),
-                                   counter,
-                                   MPKeyPurposeAuthentication,
-                                   NULL,
                                    toMPSiteType(type),
                                    NULL,
-                                   toMPAlgorithmVersion(m_algVersion));
+                                   counter,
+                                   SW_PURPOSE_AUTHENTICATION,
+                                   NULL);
 
     if (p) {
         m_db->insert(site, type, counter);
@@ -144,21 +131,21 @@ QString MPWManager::getPassword(const QString &site, PasswordType type, const ui
     }
 }
 
-MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version)
+unsigned int MPWManager::toMPAlgorithmVersion(AlgorithmVersion version)
 {
-    MPAlgorithmVersion v = MPAlgorithmVersionCurrent;
+    unsigned int v = SW_ALGORITHM_CURRENT;
     switch (version) {
     case V0:
-        v = MPAlgorithmVersion0;
+        v = SW_ALGORITHM_V0;
         break;
     case V1:
-        v = MPAlgorithmVersion1;
+        v = SW_ALGORITHM_V1;
         break;
     case V2:
-        v = MPAlgorithmVersion2;
+        v = SW_ALGORITHM_V2;
         break;
     case V3:
-        v = MPAlgorithmVersion3;
+        v = SW_ALGORITHM_V3;
         break;
     default:
         qCritical() << "Unrecognized algorithm version:" << version;
@@ -167,33 +154,33 @@ MPAlgorithmVersion MPWManager::toMPAlgorithmVersion(AlgorithmVersion version)
     return v;
 }
 
-MPResultType MPWManager::toMPSiteType(PasswordType type)
+uint32_t MPWManager::toMPSiteType(PasswordType type)
 {
-    MPResultType t = MPResultTypeTemplateLong;
+    uint32_t t = SW_RESULT_LONG;
     switch (type) {
     case Maximum:
-        t = MPResultTypeTemplateMaximum;
+        t = SW_RESULT_MAXIMUM;
         break;
     case Long:
-        t = MPResultTypeTemplateLong;
+        t = SW_RESULT_LONG;
         break;
     case Medium:
-        t = MPResultTypeTemplateMedium;
+        t = SW_RESULT_MEDIUM;
         break;
     case Basic:
-        t = MPResultTypeTemplateBasic;
+        t = SW_RESULT_BASIC;
         break;
     case Short:
-        t = MPResultTypeTemplateShort;
+        t = SW_RESULT_SHORT;
         break;
     case PIN:
-        t = MPResultTypeTemplatePIN;
+        t = SW_RESULT_PIN;
         break;
     case Name:
-        t = MPResultTypeTemplateName;
+        t = SW_RESULT_NAME;
         break;
     case Phrase:
-        t = MPResultTypeTemplatePhrase;
+        t = SW_RESULT_PHRASE;
         break;
     default:
         qCritical() << "Unrecognized password type:" << type;

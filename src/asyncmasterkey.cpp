@@ -26,17 +26,7 @@
 
 #include <QDebug>
 
-extern "C" {
-#ifndef MPWALGORITHM_H
-#define MPWALGORITHM_H
-#include <mpw-algorithm.h>
-#endif
-
-#ifndef MPWUTIL_H
-#define MPWUTIL_H
-#include <mpw-util.h>
-#endif
-}
+#include "spectre_wrapper.h"
 
 AsyncMasterKey::AsyncMasterKey(const QString &name,
                                const QString &password,
@@ -50,18 +40,21 @@ AsyncMasterKey::~AsyncMasterKey() {}
 
 void AsyncMasterKey::generate()
 {
-    const uint8_t *k = mpw_masterKey(m_name.toUtf8().data(),
-                                     m_password.toUtf8().data(),
-                                     MPWManager::toMPAlgorithmVersion(m_algVersion));
+    /* Allocate a buffer large enough to hold the full SpectreUserKey struct */
+    const size_t keySize = sw_user_key_size();
+    QByteArray *key = new QByteArray((int) keySize, '\0');
 
-    QByteArray *key = 0;
-    if (k) {
-        key = new QByteArray((const char *) k, MPMasterKeySize);
-    } else {
+    if (!sw_user_key_fill(m_name.toUtf8().data(),
+                          m_password.toUtf8().data(),
+                          MPWManager::toMPAlgorithmVersion(m_algVersion),
+                          (uint8_t *) key->data(),
+                          keySize)) {
         qCritical() << "Error during master key generation.";
+        delete key;
+        key = nullptr;
     }
 
-    MPIdenticon fingerprint = mpw_identicon(m_name.toUtf8().data(), m_password.toUtf8().data());
+    SW_Identicon fingerprint = sw_identicon(m_name.toUtf8().data(), m_password.toUtf8().data());
 
     Q_EMIT finished(key,
                     QString::fromUtf8(fingerprint.leftArm) + QString::fromUtf8(fingerprint.body)

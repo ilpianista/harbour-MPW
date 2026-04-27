@@ -29,8 +29,8 @@ CoverBackground {
     CoverPlaceholder {
         id: placeholder
 
-        text: appWindow.password.length > 0 ? "***" : "MPW"
-        icon.source: "/usr/share/icons/hicolor/86x86/apps/harbour-mpw.png"
+        text: appWindow.password.length > 0 ? "***" : "Spectre"
+        icon.source: "/usr/share/icons/hicolor/86x86/apps/harbour-spectre.png"
     }
 
     CoverActionList {

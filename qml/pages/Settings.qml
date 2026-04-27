@@ -21,7 +21,6 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
-
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
@@ -29,6 +28,14 @@ Page {
     id: page
 
     allowedOrientations: Orientation.All
+
+    function generate() {
+        save.enabled = false;
+        busy.visible = busy.running = true;
+        fprint.text = "";
+        manager.generateMasterKey(name.text.trim(), password.text.trim(), version.currentIndex);
+    }
+
     Component.onCompleted: {
         name.text = manager.getName();
         fprint.text = manager.getFingerprint();
@@ -70,6 +77,10 @@ Page {
             placeholderText: qsTr("Master password")
             echoMode: TextInput.Password
             onTextChanged: save.enabled = (text.length > 0 && name.text.length > 0)
+
+            EnterKey.enabled: text.length > 0 && name.text.length > 0
+            EnterKey.iconSource: "image://theme/icon-m-enter-accept"
+            EnterKey.onClicked: generate()
         }
 
         ComboBox {
@@ -117,12 +128,7 @@ Page {
             text: qsTr("Generate")
             anchors.horizontalCenter: parent.horizontalCenter
             enabled: false
-            onClicked: {
-                enabled = name.enabled = password.enabled = version.enabled = false;
-                busy.visible = busy.running = true;
-                fprint.text = "";
-                manager.generateMasterKey(name.text.trim(), password.text.trim(), version.currentIndex);
-            }
+            onClicked: generate()
         }
     }
 }

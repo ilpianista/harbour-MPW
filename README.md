@@ -1,26 +1,16 @@
-# MPW
+# Spectre
 
-A [MasterPassword](https://masterpassword.app) client for [Sailfish OS](https://sailfishos.org).
+A [Spectre](https://spectre.app) client for [Sailfish OS](https://sailfishos.org).
 
 ## Install
 
-Install via [Chum](https://github.com/sailfishos-chum/main) or [OpenRepos](https://openrepos.net/content/ilpianista/mpw).
+Install via Jolla Store or [Chum](https://github.com/sailfishos-chum/main).
 
 ## Translations
 
-[![Translation status](https://hosted.weblate.org/widgets/harbour-mpw/-/svg-badge.svg)](https://hosted.weblate.org/engage/harbour-mpw/?utm_source=widget)
+[![Translation status](https://hosted.weblate.org/widgets/harbour-spectre/-/svg-badge.svg)](https://hosted.weblate.org/engage/harbour-spectre/?utm_source=widget)
 
-Translations via [Weblate](https://hosted.weblate.org/projects/harbour-mpw/), thank you!
-
-## Build
-
-To install `libmpw`, performs the following steps:
-
-```
-sfdk tools exec SailfishOS-4.1.0.24-i486
-ssu ar ilpianista http://repo.merproject.org/obs/home:/ilpianista/sailfishos_latest_latest_i486/
-zypper ref -f
-```
+Translations via [Weblate](https://hosted.weblate.org/projects/harbour-spectre/), thank you!
 
 ## Donate
 

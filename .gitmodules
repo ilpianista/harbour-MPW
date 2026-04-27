@@ -1,3 +1,6 @@
 [submodule "libsodium"]
 	path = libsodium
-	url = https://github.com/sailfishos-chum/libsodium.git
+	url = https://github.com/jedisct1/libsodium.git
+[submodule "libspectre"]
+	path = libspectre
+	url = https://gitlab.com/spectre.app/api.git

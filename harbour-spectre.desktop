@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Categories=Utility;
+Icon=harbour-spectre
+Exec=harbour-spectre
+Name=Spectre
+Comment=A Spectre client
+
+[X-Sailjail]
+Permissions=
+OrganizationName=dev.scarpino
+ApplicationName=harbour-spectre
