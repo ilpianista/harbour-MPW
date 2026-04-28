@@ -23,6 +23,9 @@ BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  desktop-file-utils
+Obsoletes:  harbour-mpw
+Obsoletes:  libmpw
+Obsoletes:  libmpw-devel
 
 %description
 A Spectre client.
