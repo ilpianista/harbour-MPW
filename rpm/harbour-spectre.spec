@@ -58,6 +58,7 @@ Url:
 
 %build
 # >> build pre
+export MER_CROSS_COMPILE=%{_host}
 # << build pre
 
 %qtc_qmake5

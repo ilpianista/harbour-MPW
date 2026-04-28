@@ -78,6 +78,7 @@ PRE_TARGETDEPS += $$LIBSODIUM_STAGE/usr/lib/libsodium.so
 
 libsodium_so_install.path = /usr/share/harbour-spectre/lib
 libsodium_so_install.files = $$LIBSODIUM_STAGE/usr/lib/libsodium.so*
+libsodium_so_install.CONFIG += no_check_exist
 INSTALLS += libsodium_so_install
 
 # libspectre gets its own per-arch output directory.
@@ -103,4 +104,5 @@ PRE_TARGETDEPS += $$LIBSPECTRE_STAGE/libspectre.so
 
 libspectre_so_install.path = /usr/share/harbour-spectre/lib
 libspectre_so_install.files = $$LIBSPECTRE_STAGE/libspectre.so*
+libspectre_so_install.CONFIG += no_check_exist
 INSTALLS += libspectre_so_install
