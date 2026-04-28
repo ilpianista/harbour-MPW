@@ -7,6 +7,9 @@ Exec=harbour-spectre
 Name=Spectre
 Comment=A Spectre client
 
+[X-HarbourBackup]
+BackupPathList=.config/dev.scarpino/harbour-spectre/:.local/share/dev.scarpino/harbour-spectre/
+
 [X-Sailjail]
 Permissions=
 OrganizationName=dev.scarpino
