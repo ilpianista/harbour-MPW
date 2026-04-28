@@ -23,9 +23,11 @@ BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  desktop-file-utils
+%if "%{?vendor}" == "chum"
 Obsoletes:  harbour-mpw
 Obsoletes:  libmpw
 Obsoletes:  libmpw-devel
+%endif
 
 %description
 A Spectre client.

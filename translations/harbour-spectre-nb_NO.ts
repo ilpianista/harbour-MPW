@@ -92,27 +92,27 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="64"/>
+        <location filename="../qml/pages/Settings.qml" line="61"/>
         <source>Settings</source>
         <translation>Innstillinger</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="72"/>
+        <location filename="../qml/pages/Settings.qml" line="69"/>
         <source>Full name</source>
         <translation>Fullt navn</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="81"/>
+        <location filename="../qml/pages/Settings.qml" line="77"/>
         <source>Master password</source>
         <translation>Hovedpassord</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="94"/>
+        <location filename="../qml/pages/Settings.qml" line="89"/>
         <source>Algorithm version</source>
         <translation>Algoritmeversjon</translation>
     </message>
     <message>
-        <location filename="../qml/pages/Settings.qml" line="133"/>
+        <location filename="../qml/pages/Settings.qml" line="128"/>
         <source>Generate</source>
         <translation>Generer</translation>
     </message>
