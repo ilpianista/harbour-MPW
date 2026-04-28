@@ -1,2 +1,6 @@
+* Tue Apr 28 2026 Andrea Scarpino <andrea@scarpino.dev> 0.4.1-1
+- Fix cross compilation.
+- Update translations.
+
 * Mon Apr 27 2026 Andrea Scarpino <andrea@scarpino.dev> 0.4.0-1
 - Rename MPW to Spectre.
