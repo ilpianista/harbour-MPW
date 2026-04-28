@@ -27,8 +27,6 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
-    allowedOrientations: Orientation.All
-
     function generate() {
         save.enabled = false;
         busy.visible = busy.running = true;
@@ -36,6 +34,7 @@ Page {
         manager.generateMasterKey(name.text.trim(), password.text.trim(), version.currentIndex);
     }
 
+    allowedOrientations: Orientation.All
     Component.onCompleted: {
         name.text = manager.getName();
         fprint.text = manager.getFingerprint();
@@ -68,6 +67,9 @@ Page {
             text: manager.getName
             placeholderText: qsTr("Full name")
             onTextChanged: save.enabled = (text.length > 0 && password.text.length > 0)
+            EnterKey.enabled: text.length > 0
+            EnterKey.iconSource: "image://theme/icon-m-enter-next"
+            EnterKey.onClicked: password.focus = true
         }
 
         TextField {
@@ -77,7 +79,6 @@ Page {
             placeholderText: qsTr("Master password")
             echoMode: TextInput.Password
             onTextChanged: save.enabled = (text.length > 0 && name.text.length > 0)
-
             EnterKey.enabled: text.length > 0 && name.text.length > 0
             EnterKey.iconSource: "image://theme/icon-m-enter-accept"
             EnterKey.onClicked: generate()
