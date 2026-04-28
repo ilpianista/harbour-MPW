@@ -75,6 +75,8 @@ rm -rf %{buildroot}
 %qmake5_install
 
 # >> install post
+find %{buildroot}%{_datadir}/%{name}/lib -name "*.so*" -type f \
+    -exec strip --strip-unneeded {} \;
 # << install post
 
 desktop-file-install --delete-original       \
