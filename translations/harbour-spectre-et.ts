@@ -11,7 +11,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="82"/>
         <source>Clearing sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Kustutan saitide sisu</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="96"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="205"/>
         <source>Tap to set your master password or use the &quot;Settings&quot; page</source>
-        <translation type="unfinished"></translation>
+        <translation>Klõpsa ülemparooli seadmiseks või kasuta vastavat valikut Seadistuste vaatest</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="164"/>
