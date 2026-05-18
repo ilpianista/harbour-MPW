@@ -198,12 +198,12 @@ Page {
                 Text {
                     id: password
 
-                    width: parent.width - hideButton.width
+                    width: parent.width - (masterKey ? hideButton.width : 0)
                     color: Theme.secondaryColor
                     horizontalAlignment: TextInput.AlignHCenter
                     wrapMode: Text.Wrap
                     text: qsTr("Tap to set your master password or use the \"Settings\" page")
-                    font.pixelSize: masterKey ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: masterKey ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     anchors.verticalCenter: parent.verticalCenter
 
                     MouseArea {
