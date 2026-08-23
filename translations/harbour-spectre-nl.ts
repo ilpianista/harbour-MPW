@@ -11,7 +11,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="82"/>
         <source>Clearing sites</source>
-        <translation>Opschonen van websites</translation>
+        <translation>Websites worden opgeschoond</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="96"/>
