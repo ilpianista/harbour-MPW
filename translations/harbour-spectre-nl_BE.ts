@@ -11,7 +11,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="82"/>
         <source>Clearing sites</source>
-        <translation type="unfinished"></translation>
+        <translation>Websites worden opgekuist</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="96"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="205"/>
         <source>Tap to set your master password or use the &quot;Settings&quot; page</source>
-        <translation type="unfinished"></translation>
+        <translation>Tikt voôr u hoôfdpaswoord in te stellen of doe ’t via d’Instellingen</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="164"/>
@@ -71,7 +71,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="79"/>
         <source>Clear sites</source>
-        <translation>Sites wissen</translation>
+        <translation>Sites opkuisen</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="136"/>
@@ -104,7 +104,7 @@
     <message>
         <location filename="../qml/pages/Settings.qml" line="77"/>
         <source>Master password</source>
-        <translation>Hoofdpaswoord</translation>
+        <translation>Hoôfdpaswoord</translation>
     </message>
     <message>
         <location filename="../qml/pages/Settings.qml" line="89"/>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../qml/pages/SiteDelegate.qml" line="51"/>
         <source>Deleting</source>
-        <translation>Wordt verwijderd</translation>
+        <translation>Wor’ verwijderd</translation>
     </message>
 </context>
 </TS>
