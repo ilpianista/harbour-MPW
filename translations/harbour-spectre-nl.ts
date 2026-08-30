@@ -11,7 +11,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="82"/>
         <source>Clearing sites</source>
-        <translation>Opschonen van websites</translation>
+        <translation>Websites worden opgeschoond</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="96"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="205"/>
         <source>Tap to set your master password or use the &quot;Settings&quot; page</source>
-        <translation>Druk op je hoofdwachtwoord in te stellen of open de instellingen hiervoor</translation>
+        <translation>Druk om je hoofdwachtwoord in te stellen of open de instellingen hiervoor</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="164"/>
